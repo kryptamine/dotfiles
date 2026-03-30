@@ -154,10 +154,6 @@
                     "treat_as_built_in_keyboard": true
                 },
                 {
-                    "identifiers": { "is_keyboard": true },
-                    "ignore": true
-                },
-                {
                     "identifiers": {
                         "is_keyboard": true,
                         "is_pointing_device": true,
