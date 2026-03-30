@@ -20,6 +20,16 @@ return {
 				"json",
 				"javascript",
 				"typescript",
+				"python",
+				"rust",
+				"go",
+				"toml",
+				"yaml",
+				"css",
+				"scss",
+				"html",
+				"groovy",
+				"terraform",
 			}
 
 			require("nvim-treesitter").install(parsers)
