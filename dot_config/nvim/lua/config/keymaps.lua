@@ -3,8 +3,14 @@ local keymap = vim.keymap
 keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
-keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+keymap.set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Go to previous [D]iagnostic message" })
+
+keymap.set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Go to next [D]iagnostic message" })
+
 keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 
 --  Use CTRL+<hjkl> to switch between windows
@@ -67,26 +73,7 @@ keymap.set("t", "<c-t>", function()
 	Snacks.terminal.toggle()
 end, { desc = "Toggle Terminal" })
 
--- Open Code diff
-keymap.set("n", "<leader>ff", "<cmd>CodeDiff<CR>", opts)
-
 -- Incremental selection
-local function expand_selection()
-	if vim.fn.mode() == "n" then
-		vim.cmd("normal! v")
-	end
-	vim.cmd("normal! an")
-end
-
-local function shrink_selection()
-	if vim.fn.mode() == "n" then
-		return -- nothing to shrink if no selection
-	end
-	vim.cmd("normal! in")
-end
-
-vim.keymap.set({ "n", "x" }, "<C-k>", expand_selection)
-vim.keymap.set({ "x" }, "<C-j>", shrink_selection)
-
+keymap.set("n", "<C-k>", "van", { remap = true })
 keymap.set("x", "<C-k>", "an", { remap = true })
 keymap.set("x", "<C-j>", "in", { remap = true })

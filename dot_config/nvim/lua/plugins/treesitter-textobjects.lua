@@ -34,12 +34,6 @@ local function movep(target, locals)
 	return move(target, true, locals)
 end
 
-local function repeatable(func)
-	return function()
-		return require("nvim-treesitter-textobjects.repeatable_move")[func]()
-	end
-end
-
 local function makemap(lhs, rhs, modes, opts)
 	opts = opts or {}
 	opts.mode = {}
@@ -72,13 +66,6 @@ return {
 		makemap("[c", movep("@class.outer"), "nxo"),
 		makemap("]s", moven("@local.scope", "locals"), "nxo"),
 		makemap("[s", movep("@local.scope", "locals"), "nxo"),
-		-- Repeatable move
-		makemap(";", repeatable("repeat_last_move_next"), "nxo"),
-		makemap(",", repeatable("repeat_last_move_previous"), "nxo"),
-		makemap("f", repeatable("builtin_f_expr"), "nxo", { expr = true }),
-		makemap("F", repeatable("builtin_F_expr"), "nxo", { expr = true }),
-		makemap("t", repeatable("builtin_t_expr"), "nxo", { expr = true }),
-		makemap("T", repeatable("builtin_T_expr"), "nxo", { expr = true }),
 	},
 	opts = {
 		select = {
