@@ -55,7 +55,7 @@ local options = {
   -- Set highlight on search, but clear on pressing <Esc> in normal mode,
   hlsearch = true,
 
-  foldminlines = 10000,
+  foldenable = false,
 
   -- What to save in session.
   sessionoptions = {
