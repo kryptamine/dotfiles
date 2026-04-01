@@ -74,6 +74,18 @@ keymap.set("t", "<c-t>", function()
 end, { desc = "Toggle Terminal" })
 
 -- Incremental selection
-keymap.set("n", "<C-k>", "van", { remap = true })
-keymap.set("x", "<C-k>", "an", { remap = true })
-keymap.set("x", "<C-j>", "in", { remap = true })
+local function ensure_visual()
+	local mode = vim.fn.mode()
+	if mode == "n" then
+		vim.cmd("normal! v")
+	end
+end
+
+vim.keymap.set({ "n", "x" }, "<C-k>", function()
+	ensure_visual()
+	vim.cmd("normal an")
+end)
+
+vim.keymap.set({ "x" }, "<C-j>", function()
+	vim.cmd("normal in")
+end)
