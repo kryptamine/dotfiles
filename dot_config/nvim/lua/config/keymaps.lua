@@ -74,18 +74,18 @@ keymap.set("t", "<c-t>", function()
 end, { desc = "Toggle Terminal" })
 
 -- Incremental selection
-local function ensure_visual()
-	local mode = vim.fn.mode()
-	if mode == "n" then
-		vim.cmd("normal! v")
+keymap.set({ "n", "x", "o" }, "<C-k>", function()
+	if vim.treesitter.get_parser(nil, nil, { error = false }) then
+		require("vim.treesitter._select").select_parent(vim.v.count1)
+	else
+		vim.lsp.buf.selection_range(vim.v.count1)
 	end
-end
+end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
 
-vim.keymap.set({ "n", "x" }, "<C-k>", function()
-	ensure_visual()
-	vim.cmd("normal an")
-end)
-
-vim.keymap.set({ "x" }, "<C-j>", function()
-	vim.cmd("normal in")
-end)
+keymap.set({ "n", "x", "o" }, "<C-j>", function()
+	if vim.treesitter.get_parser(nil, nil, { error = false }) then
+		require("vim.treesitter._select").select_child(vim.v.count1)
+	else
+		vim.lsp.buf.selection_range(-vim.v.count1)
+	end
+end, { desc = "Select child treesitter node or inner incremental lsp selections" })
