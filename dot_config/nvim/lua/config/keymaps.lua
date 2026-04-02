@@ -13,11 +13,9 @@ end, { desc = "Go to next [D]iagnostic message" })
 
 keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 
---  Use CTRL+<hjkl> to switch between windows
+--  Use CTRL+<hl> to switch between windows (vertical navigation uses default <C-w>j/k)
 keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
