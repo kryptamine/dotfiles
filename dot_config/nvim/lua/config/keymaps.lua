@@ -16,6 +16,8 @@ keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnosti
 --  Use CTRL+<hl> to switch between windows (vertical navigation uses default <C-w>j/k)
 keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the up window" })
+keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the down window" })
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
@@ -72,7 +74,7 @@ keymap.set("t", "<c-t>", function()
 end, { desc = "Toggle Terminal" })
 
 -- Incremental selection
-keymap.set({ "n", "x", "o" }, "<C-k>", function()
+vim.keymap.set({ "n", "x", "o" }, "<C-o>", function()
 	if vim.treesitter.get_parser(nil, nil, { error = false }) then
 		require("vim.treesitter._select").select_parent(vim.v.count1)
 	else
@@ -80,7 +82,7 @@ keymap.set({ "n", "x", "o" }, "<C-k>", function()
 	end
 end, { desc = "Select parent treesitter node or outer incremental lsp selections" })
 
-keymap.set({ "n", "x", "o" }, "<C-j>", function()
+vim.keymap.set({ "n", "x", "o" }, "<C-i>", function()
 	if vim.treesitter.get_parser(nil, nil, { error = false }) then
 		require("vim.treesitter._select").select_child(vim.v.count1)
 	else
