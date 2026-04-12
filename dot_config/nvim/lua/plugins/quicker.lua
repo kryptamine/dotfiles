@@ -1,7 +1,7 @@
 return {
-  {
-    'stevearc/quicker.nvim',
-    ft = 'qf',
-    opts = {},
-  },
+	{
+		"stevearc/quicker.nvim",
+		ft = "qf",
+		opts = {},
+	},
 }
