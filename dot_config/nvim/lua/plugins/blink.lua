@@ -1,8 +1,7 @@
 return {
 	{
 		"saghen/blink.cmp",
-		event = "VimEnter",
-		lazy = false,
+		event = "InsertEnter",
 		version = "1.*",
 		opts = {
 			keymap = {

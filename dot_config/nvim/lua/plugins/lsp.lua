@@ -9,8 +9,6 @@ return {
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
 		config = function()
-			require("mason-lspconfig").setup({})
-
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 				callback = function(event)
@@ -111,6 +109,11 @@ return {
 			for server_name, config in pairs(servers) do
 				vim.lsp.config(server_name, config)
 			end
+
+			require("mason-lspconfig").setup({
+				ensure_installed = vim.tbl_keys(servers),
+				automatic_enable = true,
+			})
 		end,
 	},
 }
