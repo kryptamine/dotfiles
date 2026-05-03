@@ -1,5 +1,4 @@
 tap "homebrew/bundle"
-tap "homebrew/services"
 brew "ast-grep"
 brew "sqlite"
 brew "black"
