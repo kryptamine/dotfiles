@@ -4,6 +4,7 @@ set -gx VISUAL nvim
 
 # Homebrew (Apple Silicon)
 set -gx HOMEBREW_PREFIX /opt/homebrew
+set -gx HOMEBREW_NO_AUTO_UPDATE 1
 
 # Base PATH additions (prepend = higher priority)
 fish_add_path -g ~/.local/bin
