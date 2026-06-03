@@ -22,6 +22,7 @@ local options = {
 		c = { "clang-format" },
 		go = { "gofmt" },
 		rust = { "rustfmt", lsp_format = "fallback" },
+		http = { "kulala-fmt" },
 	},
 
 	default_format_opts = {
