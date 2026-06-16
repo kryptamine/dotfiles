@@ -17,6 +17,12 @@ return {
 		},
 	},
 	opts = {
+		-- kulala binds <c-h>/<c-l> to switch tabs in its window, which shadows
+		-- the window-navigation maps. Disable them.
+		kulala_keymaps = {
+			["Previous tab"] = false,
+			["Next tab"] = false,
+		},
 		ui = {
 			default_winbar_panes = { "body", "headers", "verbose", "report" },
 			show_request_summary = false,
