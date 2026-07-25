@@ -1,0 +1,25 @@
+onboarding = false
+
+[theme]
+name = "terminal"
+
+[theme.custom]
+accent = "#ffdd33"     
+panel_bg = "#181818"   
+surface_dim = "#101010"
+surface0 = "#282828"   
+surface1 = "#453d41"   
+overlay0 = "#484848"   
+overlay1 = "#52494e"   
+text = "#e4e4ef"       
+subtext0 = "#95a99f"   
+red = "#f43841"
+green = "#73c936"
+yellow = "#ffdd33"
+blue = "#96a6c8"       
+mauve = "#9e95c7"      
+teal = "#95a99f"       
+peach = "#cc8c3c"      
+
+[ui.toast]
+delivery = "off"

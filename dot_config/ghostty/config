@@ -2,15 +2,12 @@
 
 # ── Shell / integration ───────────────────────────────────────────────
 command = /opt/homebrew/bin/fish
-# kitty: shell_integration no-cursor no-title
+# Autostart the herdr workspace manager, but only in the window Ghostty
+# opens on launch — cmd+T / cmd+N still give a plain fish shell.
+initial-command = /opt/homebrew/bin/herdr
 shell-integration = fish
 shell-integration-features = no-cursor,no-title,sudo
-# kitty: term xterm-256color — uncomment if TERM breaks on remote hosts;
-# Ghostty ships its own terminfo (xterm-ghostty), which is more capable.
-# term = xterm-256color
 
-# ── Font ──────────────────────────────────────────────────────────────
-# kitty: MapleMono-NF-Light / SemiBold / LightItalic / SemiBoldItalic
 font-family = Maple Mono NF
 font-style = Light
 font-style-bold = SemiBold
@@ -38,20 +35,11 @@ font-feature = cv35
 font-feature = cv36
 font-feature = ss03
 
-# kitty: adjust_line_height 110% / adjust_column_width 95%
-adjust-cell-height = 10%
-adjust-cell-width = -5%
-
 # ── Theme / colors ────────────────────────────────────────────────────
 theme = gruber-darker
 alpha-blending = linear-corrected
 
-# ── Cursor ────────────────────────────────────────────────────────────
 cursor-style = block
-
-# ── Window ────────────────────────────────────────────────────────────
-# kitty: hide_window_decorations yes
-# alternatives: tabs (native tabs visible) | transparent | native
 macos-titlebar-style = hidden
 macos-option-as-alt = true
 window-colorspace = display-p3
@@ -62,8 +50,3 @@ quit-after-last-window-closed = true
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 2
 
-# ── Keybindings ───────────────────────────────────────────────────────
-# kitty: ctrl+f = fzf overlay over the scrollback.
-# Ghostty has no overlay windows; the scrollback is dumped to a file and
-# opened in the default app (:paste — paste the path into the current shell).
-keybind = ctrl+f=write_scrollback_file:open
