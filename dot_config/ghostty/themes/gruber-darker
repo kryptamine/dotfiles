@@ -1,6 +1,3 @@
-# Gruber Darker — 1:1 перенос из ~/.config/kitty/gruber-darker.conf
-# (встроенная тема Ghostty "Gruber Darker" отличается: фон #181818 и другие оттенки)
-
 background            = #000000
 foreground            = #E4E4E4
 selection-background  = #FFFFFF
@@ -26,7 +23,7 @@ palette = 11=#FFDD33
 
 # blue
 palette = 4=#96A6C8
-palette = 12=#52494E
+palette = 12=#A8B8DA
 
 # magenta
 palette = 5=#9E95C7

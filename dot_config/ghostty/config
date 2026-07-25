@@ -1,41 +1,19 @@
 # Ghostty config — ported from ~/.config/kitty/kitty.conf
 
 # ── Shell / integration ───────────────────────────────────────────────
-command = /opt/homebrew/bin/fish
+# No `command` here on purpose: fish is already the login shell, so Ghostty
+# picks it up from $SHELL / passwd without hardcoding the Homebrew prefix.
 # Autostart the herdr workspace manager, but only in the window Ghostty
 # opens on launch — cmd+T / cmd+N still give a plain fish shell.
 initial-command = /opt/homebrew/bin/herdr
 shell-integration = fish
-shell-integration-features = no-cursor,no-title,sudo
+# `no-title` is deliberately absent: without kitty's tab_title_template the
+# shell has to be the one setting window/tab titles.
+shell-integration-features = no-cursor,sudo
 
-font-family = Maple Mono NF
-font-style = Light
-font-style-bold = SemiBold
-font-style-italic = Light Italic
-font-style-bold-italic = SemiBold Italic
+font-family = IosevkaTerm Nerd Font Mono
+font-size = 22
 
-font-size = 20
-
-# Ghostty applies OpenType features to every style at once (kitty allowed
-# per-style sets). Below is the union of both sets: cv34/cv35/cv36/ss03
-# exist only in the italics, so they don't affect the upright style.
-font-feature = zero
-font-feature = cv01
-font-feature = cv02
-font-feature = cv07
-font-feature = cv40
-font-feature = cv61
-font-feature = cv62
-font-feature = ss05
-font-feature = ss07
-font-feature = ss08
-font-feature = ss11
-font-feature = cv34
-font-feature = cv35
-font-feature = cv36
-font-feature = ss03
-
-# ── Theme / colors ────────────────────────────────────────────────────
 theme = gruber-darker
 alpha-blending = linear-corrected
 
@@ -46,7 +24,10 @@ window-colorspace = display-p3
 window-padding-balance = true
 window-save-state = always
 quit-after-last-window-closed = true
+resize-overlay = never
 
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 2
+
+auto-update = download
 
