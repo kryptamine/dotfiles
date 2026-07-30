@@ -12,7 +12,13 @@ shell-integration = fish
 shell-integration-features = no-cursor,sudo
 
 font-family = IosevkaTerm Nerd Font Mono
-font-size = 22
+font-style-italic = false
+font-style-bold-italic = false
+font-size = 21
+font-thicken = true
+font-thicken-strength = 50
+font-synthetic-style = no-bold
+font-feature = liga
 
 theme = gruber-darker
 alpha-blending = linear-corrected
