@@ -28,7 +28,6 @@ return {
 				"yaml",
 				"css",
 				"scss",
-				"html",
 				"groovy",
 				"terraform",
 				"fish",

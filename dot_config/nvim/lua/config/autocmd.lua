@@ -68,3 +68,14 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
   end,
 })
+
+-- `q` is <nop> globally (see keymaps.lua), so restore it buffer-locally in the
+-- throwaway windows where it is the natural way out.
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Close quickfix and loclist windows with q',
+  group = vim.api.nvim_create_augroup('quickfix_close', { clear = true }),
+  pattern = 'qf',
+  callback = function(args)
+    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = args.buf, desc = 'Close quickfix list' })
+  end,
+})
