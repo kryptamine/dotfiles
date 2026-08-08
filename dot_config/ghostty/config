@@ -23,14 +23,6 @@ font-feature = liga
 theme = gruber-darker
 alpha-blending = linear-corrected
 
-# ── Shaders ───────────────────────────────────────────────────────────
-# Cursor-trail shader by Komsit37. Shadertoy-style, and it leans on the
-# Ghostty-specific iCurrentCursor / iTimeCursorChange uniforms, so it only
-# works here — not on shadertoy.com. Path is relative to this config file.
-# A broken shader is ignored silently (errors go to the log only), and a
-# valid-but-wrong one can black out the window — comment this out to undo.
-custom-shader = shaders/manga-slash.glsl
-
 cursor-style = block
 macos-titlebar-style = hidden
 macos-option-as-alt = true
