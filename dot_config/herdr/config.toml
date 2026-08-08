@@ -1,27 +1,27 @@
 onboarding = false
 
-# Base "terminal" inherits the Ghostty ANSI palette (theme = kanso-zen),
-# with exact Kanso Zen tokens layered on top for the Herdr UI.
+# Base "terminal" inherits the Ghostty ANSI palette (theme = gruber-darker),
+# with exact Gruber Darker tokens layered on top for the Herdr UI.
 [theme]
 name = "terminal"
 
 [theme.custom]
-accent = "#7fb4ca"      # blue
-panel_bg = "#090e13"    # zenBg0 — matches the Ghostty background
-surface_dim = "#05080d" # one step below zenBg0 (Zen has no darker token)
-surface0 = "#1c1e25"    # zenBg1
-surface1 = "#22262d"    # zenBg2
-overlay0 = "#393b44"    # zenBg3
-overlay1 = "#5c6066"    # gray5
-text = "#c5c9c7"        # fg
-subtext0 = "#a4a7a4"    # gray2
-red = "#e46876"         # red2
-green = "#87a987"       # green2
-yellow = "#e6c384"      # yellow2
-blue = "#7fb4ca"        # blue
-mauve = "#938aa9"       # violet
-teal = "#7aa89f"        # green5
-peach = "#b6927b"       # orange
+accent = "#ffdd33"      # yellow / palette 3
+panel_bg = "#000000"    # matches the Ghostty `background` exactly
+surface_dim = "#000000" # nothing darker than the background exists
+surface0 = "#181818"    # gruber bg / palette 0
+surface1 = "#282828"    # gruber bg+1
+overlay0 = "#453d41"    # gruber bg+2
+overlay1 = "#52494e"    # bright black / palette 8
+text = "#e4e4e4"        # foreground / palette 7
+subtext0 = "#95a99f"    # quartz / palette 6
+red = "#f43841"         # palette 1
+green = "#73d936"       # palette 2
+yellow = "#ffdd33"      # palette 3
+blue = "#96a6c8"        # niagara / palette 4
+mauve = "#9e95c7"       # wisteria / palette 5
+teal = "#95a99f"        # quartz / palette 6
+peach = "#cc8c3c"       # brown (no ANSI slot)
 
 [ui.toast]
 delivery = "off"

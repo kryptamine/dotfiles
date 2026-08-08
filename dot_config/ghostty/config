@@ -20,7 +20,7 @@ font-thicken-strength = 50
 font-synthetic-style = no-bold
 font-feature = liga
 
-theme = kanso-zen
+theme = gruber-darker
 alpha-blending = linear-corrected
 
 cursor-style = block
