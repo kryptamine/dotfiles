@@ -1,25 +1,27 @@
 onboarding = false
 
+# Base "terminal" inherits the Ghostty ANSI palette (theme = kanso-zen),
+# with exact Kanso Zen tokens layered on top for the Herdr UI.
 [theme]
 name = "terminal"
 
 [theme.custom]
-accent = "#ffdd33"     
-panel_bg = "#181818"   
-surface_dim = "#101010"
-surface0 = "#282828"   
-surface1 = "#453d41"   
-overlay0 = "#484848"   
-overlay1 = "#52494e"   
-text = "#e4e4ef"       
-subtext0 = "#95a99f"   
-red = "#f43841"
-green = "#73c936"
-yellow = "#ffdd33"
-blue = "#96a6c8"       
-mauve = "#9e95c7"      
-teal = "#95a99f"       
-peach = "#cc8c3c"      
+accent = "#7fb4ca"      # blue
+panel_bg = "#090e13"    # zenBg0 — matches the Ghostty background
+surface_dim = "#05080d" # one step below zenBg0 (Zen has no darker token)
+surface0 = "#1c1e25"    # zenBg1
+surface1 = "#22262d"    # zenBg2
+overlay0 = "#393b44"    # zenBg3
+overlay1 = "#5c6066"    # gray5
+text = "#c5c9c7"        # fg
+subtext0 = "#a4a7a4"    # gray2
+red = "#e46876"         # red2
+green = "#87a987"       # green2
+yellow = "#e6c384"      # yellow2
+blue = "#7fb4ca"        # blue
+mauve = "#938aa9"       # violet
+teal = "#7aa89f"        # green5
+peach = "#b6927b"       # orange
 
 [ui.toast]
 delivery = "off"
