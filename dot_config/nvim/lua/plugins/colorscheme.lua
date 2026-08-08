@@ -41,6 +41,8 @@ return {
 		config = function()
 			require("kanso").setup({
 				minimal = true,
+				foreground = "saturated",
+				compile = true,
 			})
 
 			vim.cmd.colorscheme("kanso-zen")
