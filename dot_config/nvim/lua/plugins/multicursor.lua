@@ -16,19 +16,22 @@ return {
 			mc.lineAddCursor(1)
 		end)
 
-		-- Add or skip adding a new cursor by matching word/selection
+		-- Add or skip adding a new cursor by matching word/selection.
+		-- Skip is on <leader>k/K rather than <leader>s/S: the latter is the
+		-- prefix for every picker mapping (<leader>ss, <leader>sw, ...) and
+		-- would make each of those wait out 'timeoutlen'.
 		set({ "n", "x" }, "<leader>n", function()
 			mc.matchAddCursor(1)
-		end)
-		set({ "n", "x" }, "<leader>s", function()
+		end, { desc = "Add cursor at next match" })
+		set({ "n", "x" }, "<leader>k", function()
 			mc.matchSkipCursor(1)
-		end)
+		end, { desc = "Skip next match" })
 		set({ "n", "x" }, "<leader>N", function()
 			mc.matchAddCursor(-1)
-		end)
-		set({ "n", "x" }, "<leader>S", function()
+		end, { desc = "Add cursor at previous match" })
+		set({ "n", "x" }, "<leader>K", function()
 			mc.matchSkipCursor(-1)
-		end)
+		end, { desc = "Skip previous match" })
 
 		-- Disable and enable cursors.
 		set({ "n", "x" }, "<c-q>", mc.toggleCursor)

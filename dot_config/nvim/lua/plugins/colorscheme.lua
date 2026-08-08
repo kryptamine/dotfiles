@@ -2,6 +2,10 @@ return {
 	{
 		"https://github.com/qwlp/gruber-darker.nvim",
 		name = "gruber-darker",
+		lazy = false,
+		-- Must load before snacks.nvim (priority 1000) so the dashboard and the
+		-- SnacksPicker* overrides below are painted with the theme already applied.
+		priority = 1001,
 		config = function()
 			require("gruber-darker").setup({
 				bold = false,

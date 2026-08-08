@@ -1,8 +1,12 @@
-local prettier_langs = {
+-- Formatted by prettierd, then linted-and-fixed by eslint_d.
+local eslint_langs = {
 	"javascript",
 	"typescript",
 	"javascriptreact",
 	"typescriptreact",
+}
+
+local prettier_langs = {
 	"css",
 	"html",
 	"json",
@@ -18,7 +22,7 @@ local options = {
 
 	formatters_by_ft = {
 		lua = { "stylua" },
-		python = { "black", "ruff" },
+		python = { "isort", "black" },
 		c = { "clang-format" },
 		go = { "gofmt" },
 		rust = { "rustfmt", lsp_format = "fallback" },
@@ -36,11 +40,13 @@ for _, lang in ipairs(prettier_langs) do
 	options.formatters_by_ft[lang] = { "prettierd" }
 end
 
-options.formatters_by_ft.javascript = { "prettierd", "eslint_d" }
+for _, lang in ipairs(eslint_langs) do
+	options.formatters_by_ft[lang] = { "prettierd", "eslint_d" }
+end
 
 return {
 	"stevearc/conform.nvim",
 	event = "BufWritePre",
-	lazy = false,
+	cmd = "ConformInfo",
 	opts = options,
 }

@@ -86,7 +86,6 @@ for k, v in pairs(options) do
 end
 
 vim.opt.wildignore:append({ "*/node_modules/*" })
-vim.opt.sessionoptions:remove({ "blank", "buffers", "folds", "help", "terminal" })
 
 vim.scriptencoding = "utf-8"
 

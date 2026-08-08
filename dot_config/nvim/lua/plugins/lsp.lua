@@ -1,7 +1,7 @@
 return {
 	{
 		"mason-org/mason-lspconfig.nvim",
-		event = "BufReadPre",
+		event = { "BufReadPre", "BufNewFile" },
 		opts = {},
 		dependencies = {
 			{ "mason-org/mason.nvim", opts = {} },
@@ -96,6 +96,7 @@ return {
 				"eslint_d",
 				"gopls",
 				"black",
+				"isort",
 				"prettierd",
 				"intelephense",
 				"terraformls",
