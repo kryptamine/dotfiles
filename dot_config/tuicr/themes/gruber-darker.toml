@@ -1,0 +1,63 @@
+# Gruber Darker for tuicr.
+# Palette matches ~/.config/kitty/gruber-darker.conf and the Ghostty
+# `gruber-darker` theme, so tuicr sits on the same colors as the terminal,
+# Neovim (gruber-darker.nvim) and Herdr.
+#
+#   bg       #000000   bg+1 #181818   bg+2 #282828   bg+3 #453d41
+#   fg       #e4e4e4   dim  #52494e
+#   red      #f43841   green  #73d936   yellow  #ffdd33
+#   niagara  #96a6c8   wisteria #9e95c7  quartz  #95a99f   brown #cc8c3c
+
+panel_bg = "#000000"      # matches the terminal background exactly
+bg_highlight = "#282828"  # gruber bg+2, used for selected rows
+fg_primary = "#e4e4e4"    # gruber foreground
+fg_secondary = "#95a99f"  # quartz
+fg_dim = "#52494e"        # bright black
+
+# Line-level diff tint: palette color blended onto black at ~16%.
+diff_add = "#73d936"
+diff_add_bg = "#122309"
+diff_del = "#f43841"
+diff_del_bg = "#27090a"
+diff_context = "#e4e4e4"
+diff_hunk_header = "#96a6c8" # niagara
+expanded_context_fg = "#52494e"
+
+# Word-level (intra-line) diff tint: same blend at ~30% so it reads on top of
+# the line-level background.
+syntax_add_bg = "#234110"
+syntax_del_bg = "#491114"
+syntax_theme = "gruber-darker-syntax.tmTheme"
+
+file_added = "#73d936"
+file_modified = "#ffdd33"
+file_deleted = "#f43841"
+file_renamed = "#9e95c7" # wisteria
+
+reviewed = "#73d936"
+pending = "#ffdd33"
+
+comment_note = "#96a6c8"
+comment_suggestion = "#95a99f"
+comment_issue = "#f43841"
+comment_praise = "#73d936"
+
+border_focused = "#ffdd33"
+border_unfocused = "#323232" # same border gray the Neovim Snacks pickers use
+status_bar_bg = "#181818"
+cursor_color = "#ffdd33"
+cursor_line_bg = "#181818"
+branch_name = "#9e95c7"
+help_indicator = "#95a99f"
+
+message_info_fg = "#000000"
+message_info_bg = "#96a6c8"
+message_warning_fg = "#000000"
+message_warning_bg = "#ffdd33"
+message_error_fg = "#000000"
+message_error_bg = "#f43841"
+update_badge_fg = "#000000"
+update_badge_bg = "#cc8c3c" # brown, so it stays distinct from the warning badge
+
+mode_fg = "#000000"
+mode_bg = "#ffdd33"

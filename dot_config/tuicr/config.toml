@@ -1,0 +1,3 @@
+# Local theme from themes/gruber-darker.toml — same palette as Ghostty, kitty,
+# Neovim and Herdr.
+theme = "gruber-darker"
