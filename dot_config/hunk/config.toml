@@ -1,9 +1,145 @@
-theme = "github-dark-high-contrast"
+theme = "gruber-darker"
 mode = "auto"
 line_numbers = false
 wrap_lines = false
 hunk_headers = true
-menu_bar = true
+menu_bar = false
 agent_notes = true
 copy_decorations = false
 cursor_line = "row"
+
+# Gruber Darker
+# Palette kept in sync with ~/.config/ghostty/themes/gruber-darker so Hunk's
+# surfaces match the terminal underneath: the window background there is pure
+# black and #181818 is ANSI black (palette 0), used here for raised surfaces.
+# palette: bg #000000 / black #181818 / bg+1 #282828 / bg+2 #453d41 / bg+4 #52494e
+#          fg #e4e4e4 / fg+1 #f5f5f5 / quartz #95a99f
+#          red #f43841 / green #73d936 / yellow #ffdd33 / brown #cc8c3c
+#          niagara #96a6c8 / wisteria #9e95c7
+[themes.gruber-darker]
+base = "gruvbox-dark-hard"
+label = "Gruber Darker"
+
+background = "#000000"
+panel = "#181818"
+panelAlt = "#282828"
+border = "#453d41"
+accent = "#ffdd33"
+accentMuted = "#cc8c3c"
+text = "#e4e4e4"
+muted = "#95a99f"
+
+# Diff tints are a step darker than the #181818-background version: on pure
+# black the same values read as glowing rather than tinted.
+addedBg = "#152210"
+removedBg = "#231114"
+addedContentBg = "#263a19"
+removedContentBg = "#3d181d"
+contextBg = "#000000"
+contextContentBg = "#000000"
+movedAddedBg = "#161c2b"
+movedRemovedBg = "#1d182b"
+addedSignColor = "#73d936"
+removedSignColor = "#f43841"
+
+lineNumberBg = "#181818"
+lineNumberFg = "#52494e"
+selectedHunk = "#303540"
+
+badgeAdded = "#73d936"
+badgeRemoved = "#f43841"
+badgeNeutral = "#95a99f"
+
+fileNew = "#73d936"
+fileDeleted = "#f43841"
+fileRenamed = "#96a6c8"
+fileModified = "#ffdd33"
+fileUntracked = "#9e95c7"
+
+noteBorder = "#cc8c3c"
+noteBackground = "#181818"
+noteTitleBackground = "#282828"
+noteTitleText = "#ffdd33"
+
+[themes.gruber-darker.syntax_scopes]
+# comments — brown
+"comment" = "#cc8c3c"
+"comment.line" = "#cc8c3c"
+"comment.block" = "#cc8c3c"
+"comment.block.documentation" = "#cc8c3c"
+"punctuation.definition.comment" = "#cc8c3c"
+
+# strings — green
+"string" = "#73d936"
+"string.quoted" = "#73d936"
+"string.template" = "#73d936"
+"string.unquoted" = "#73d936"
+"punctuation.definition.string" = "#73d936"
+"punctuation.definition.string.begin" = "#73d936"
+"punctuation.definition.string.end" = "#73d936"
+"string.regexp" = "#9e95c7"
+"constant.character.escape" = "#9e95c7"
+
+# keywords and storage — yellow
+"keyword" = "#ffdd33"
+"keyword.control" = "#ffdd33"
+"keyword.other" = "#ffdd33"
+"storage" = "#ffdd33"
+"storage.type" = "#ffdd33"
+"storage.modifier" = "#ffdd33"
+"entity.name.tag" = "#ffdd33"
+"markup.heading" = "#ffdd33"
+"markup.bold" = "#ffdd33"
+
+# operators and punctuation stay unfontified, like the Emacs original
+"keyword.operator" = "#e4e4e4"
+"punctuation" = "#e4e4e4"
+"punctuation.separator" = "#e4e4e4"
+"punctuation.terminator" = "#e4e4e4"
+"punctuation.accessor" = "#e4e4e4"
+"meta.brace" = "#e4e4e4"
+
+# functions and builtins — niagara
+"entity.name.function" = "#96a6c8"
+"entity.name.function.member" = "#96a6c8"
+"meta.function-call" = "#96a6c8"
+"support.function" = "#96a6c8"
+"variable.function" = "#96a6c8"
+
+# types, constants, properties — quartz
+"entity.name.type" = "#95a99f"
+"entity.name.class" = "#95a99f"
+"entity.name.namespace" = "#95a99f"
+"entity.other.inherited-class" = "#95a99f"
+"support.type" = "#95a99f"
+"support.class" = "#95a99f"
+"support.constant" = "#95a99f"
+"support.variable" = "#95a99f"
+"constant" = "#95a99f"
+"constant.numeric" = "#95a99f"
+"constant.other" = "#95a99f"
+"variable.parameter" = "#95a99f"
+"variable.other.property" = "#95a99f"
+"variable.other.object.property" = "#95a99f"
+"meta.object-literal.key" = "#95a99f"
+"support.type.property-name" = "#95a99f"
+
+# variables — plain foreground
+"variable" = "#e4e4e4"
+"variable.other" = "#e4e4e4"
+"variable.other.readwrite" = "#e4e4e4"
+"variable.other.constant" = "#e4e4e4"
+
+# language literals and attributes — wisteria
+"constant.language" = "#9e95c7"
+"variable.language" = "#9e95c7"
+"entity.other.attribute-name" = "#9e95c7"
+"entity.name.label" = "#9e95c7"
+"markup.italic" = "#9e95c7"
+
+# markup diffs and errors
+"markup.inserted" = "#73d936"
+"markup.deleted" = "#f43841"
+"markup.changed" = "#cc8c3c"
+"invalid" = "#f43841"
+"invalid.illegal" = "#f43841"
