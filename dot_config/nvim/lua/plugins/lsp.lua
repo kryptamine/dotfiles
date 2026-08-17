@@ -23,52 +23,6 @@ return {
 			})
 
 			local servers = {
-				vtsls = {
-					-- explicitly add default filetypes, so that we can extend
-					-- them in related extras
-					filetypes = {
-						"javascript",
-						"javascriptreact",
-						"javascript.jsx",
-						"typescript",
-						"typescriptreact",
-						"typescript.tsx",
-					},
-					settings = {
-						complete_function_calls = false,
-						vtsls = {
-							enableMoveToFileCodeAction = true,
-							autoUseWorkspaceTsdk = true,
-							experimental = {
-								maxInlayHintLength = 30,
-								completion = {
-									enableServerSideFuzzyMatch = true,
-								},
-							},
-						},
-						typescript = {
-							tsserver = {
-								maxTsServerMemory = 15000,
-							},
-							updateImportsOnFileMove = { enabled = "always" },
-							suggest = {
-								completeFunctionCalls = false,
-							},
-							inlayHints = {
-								enumMemberValues = { enabled = true },
-								functionLikeReturnTypes = { enabled = true },
-								parameterNames = { enabled = "literals" },
-								parameterTypes = { enabled = true },
-								propertyDeclarationTypes = { enabled = true },
-								variableTypes = { enabled = false },
-							},
-							preferences = {
-								importModuleSpecifier = "non-relative", -- Enable named imports
-								importModuleSpecifierEnding = "auto", -- Optional, auto appends `.js` for JS/TS files
-							},
-						},
-					},
-				},
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -84,6 +38,19 @@ return {
 				clangd = {
 					cmd = { "clangd", "--background-index" },
 					single_file_support = true,
+				},
+				tsc = {
+					cmd = function(dispatchers, config)
+						local cmd = "tsc"
+						local root_dir = (config or {}).root_dir
+						if root_dir then
+							local local_tsgo = vim.fs.joinpath(root_dir, "node_modules/.bin/tsgo")
+							if vim.fn.executable(local_tsgo) == 1 then
+								cmd = local_tsgo
+							end
+						end
+						return vim.lsp.rpc.start({ cmd, "--lsp", "--stdio" }, dispatchers)
+					end,
 				},
 			}
 
