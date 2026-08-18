@@ -59,7 +59,6 @@ return {
 				"stylua",
 				"html",
 				"cssls",
-				"eslint_d",
 				"gopls",
 				"black",
 				"isort",
