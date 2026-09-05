@@ -47,7 +47,7 @@ local options = {
 	inccommand = "split",
 	-- Show which line your cursor is on,
 	cursorline = true,
-	cursorlineopt = "line",
+	cursorlineopt = "both",
 	-- Minimal number of screen lines to keep above and below the cursor.,
 	scrolloff = 10,
 	-- [[ Basic Keymaps ]],
