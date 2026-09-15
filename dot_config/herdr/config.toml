@@ -9,6 +9,10 @@ name = "terminal"
 accent = "#ffdd33"      # yellow / palette 3
 panel_bg = "#000000"    # matches the Ghostty `background` exactly
 surface_dim = "#000000" # nothing darker than the background exists
+# The "terminal" base leaves selection_bg = Reset, so the selected sidebar row
+# would be invisible against the background; set row highlights explicitly.
+active_row_bg = "#282828" # gruber bg+1 — focused workspace/agent row
+selection_bg = "#453d41"  # gruber bg+2 — selected workspace row
 surface0 = "#181818"    # gruber bg / palette 0
 surface1 = "#282828"    # gruber bg+1
 overlay0 = "#453d41"    # gruber bg+2
