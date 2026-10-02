@@ -1,7 +1,8 @@
 return {
 	{
 		"saghen/blink.cmp",
-		event = "InsertEnter",
+		-- CmdlineEnter: otherwise / and : use the native wildmenu until the first InsertEnter
+		event = { "InsertEnter", "CmdlineEnter" },
 		version = "1.*",
 		opts = {
 			keymap = {
@@ -10,6 +11,28 @@ return {
 				["<C-n>"] = { "select_next", "fallback" },
 				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 				["<C-e>"] = { "hide" },
+			},
+			cmdline = {
+				keymap = {
+					preset = "cmdline",
+					-- fallback keeps <C-j> as Enter and <C-k> as digraph when the menu is closed
+					["<C-j>"] = { "select_next", "fallback" },
+					["<C-k>"] = { "select_prev", "fallback" },
+					-- the cmdline menu only opens on <Tab>, so j/k navigate after <Tab>
+					-- and are typed as usual otherwise
+					["j"] = {
+						function(cmp)
+							return cmp.is_menu_visible() and cmp.select_next()
+						end,
+						"fallback",
+					},
+					["k"] = {
+						function(cmp)
+							return cmp.is_menu_visible() and cmp.select_prev()
+						end,
+						"fallback",
+					},
+				},
 			},
 			completion = {
 				accept = {

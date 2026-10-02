@@ -18,7 +18,9 @@ return {
 
 					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-					map("<leader>b", vim.lsp.buf.hover, "Display variable type")
+					map("<leader>b", function()
+						vim.lsp.buf.hover({ border = "single" })
+					end, "Display variable type")
 				end,
 			})
 
@@ -59,6 +61,7 @@ return {
 				"stylua",
 				"html",
 				"cssls",
+				"eslint",
 				"gopls",
 				"black",
 				"isort",

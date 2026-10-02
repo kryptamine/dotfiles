@@ -29,7 +29,13 @@ return {
       ]],
 				},
 			},
-			notifier = { enabled = true },
+			notifier = {
+				enabled = true,
+				-- hover on a symbol without docs
+				filter = function(notif)
+					return notif.msg ~= "No information available"
+				end,
+			},
 			bigfile = { enabled = true },
 			picker = {
 				hidden = true,

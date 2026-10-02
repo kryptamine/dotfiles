@@ -105,3 +105,12 @@ vim.diagnostic.config({
 		source = "if_many",
 	},
 })
+
+-- Built-in (experimental) message/cmdline UI, replaces noice.nvim.
+-- With cmdheight=0 messages go to the ephemeral "msg" window instead of
+-- expanding the cmdline.
+require("vim._core.ui2").enable({
+	msg = {
+		targets = "msg",
+	},
+})

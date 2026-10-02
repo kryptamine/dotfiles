@@ -1,14 +1,27 @@
+local filetypes = {
+	"css",
+	"scss",
+	"sass",
+	"less",
+	"html",
+	"javascriptreact",
+	"typescriptreact",
+	"lua",
+}
+
 return {
 	"brenoprata10/nvim-highlight-colors",
-	-- not BufReadPost: lazy's handler runs before filetype detection, so setup()
-	-- would scan the buffer before it can be recognised as "bigfile"
-	event = "VeryLazy",
+	-- the plugin rescans the buffer on every TextChanged, so only load it where
+	-- colors actually appear; "bigfile" never matches, which keeps minified files out
+	ft = filetypes,
 	config = function()
 		require("nvim-highlight-colors").setup({
 			render = "virtual",
 			virtual_symbol = "●",
-			-- scanning minified files (one huge line) freezes nvim for seconds
-			exclude_filetypes = { "bigfile" },
+			-- once loaded, its autocmds are global: skip buffers of other filetypes
+			exclude_buffer = function(buf)
+				return not vim.tbl_contains(filetypes, vim.bo[buf].filetype)
+			end,
 		})
 	end,
 }
