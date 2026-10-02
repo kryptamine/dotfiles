@@ -1,6 +1,6 @@
 local keymap = vim.keymap
 
-keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+keymap.set("n", "<Esc>", "<cmd>nohlsearch | redrawstatus<CR>")
 
 -- Diagnostic keymaps
 keymap.set("n", "[d", function()
