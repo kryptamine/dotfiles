@@ -8,6 +8,11 @@ name = "terminal"
 [theme.custom]
 accent = "#ffdd33"      # yellow / palette 3
 panel_bg = "#000000"    # matches the Ghostty `background` exactly
+# The "terminal" base theme leaves these two on the host terminal defaults:
+# selection_bg collapses to Ghostty's `background` (#000000), so the sidebar
+# cursor in navigate mode (prefix+w / prefix+g) was invisible on panel_bg.
+active_row_bg = "#282828"  # gruber bg+1: the workspace you're in
+selection_bg = "#52494e"   # gruber bg+3: the row the cursor is on
 surface_dim = "#000000" # nothing darker than the background exists
 # The "terminal" base leaves selection_bg = Reset, so the selected sidebar row
 # would be invisible against the background; set row highlights explicitly.
@@ -29,3 +34,6 @@ peach = "#cc8c3c"       # brown (no ANSI slot)
 
 [ui.toast]
 delivery = "off"
+
+[ui.sidebar.spaces]
+rows = [["state_icon", "workspace"], ["$topic"]]
