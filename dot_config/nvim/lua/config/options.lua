@@ -57,9 +57,9 @@ local options = {
 
 	foldenable = false,
 
-	-- What to save in session.
+	-- What to save in session. No "buffers": only the files visible in windows
+	-- come back, not every buffer the last session had open.
 	sessionoptions = {
-		"buffers",
 		"curdir",
 		"resize",
 		"winpos",

@@ -66,11 +66,6 @@ keymap.set("n", "dd", function()
 	end
 end, { noremap = true, expr = true, desc = "Don't Yank Empty Line to Clipboard" })
 
--- Snacks
-keymap.set("t", "<c-t>", function()
-	Snacks.terminal.toggle()
-end, { desc = "Toggle Terminal" })
-
 -- Incremental selection
 keymap.set({ "n", "x", "o" }, "<C-k>", function()
 	if vim.treesitter.get_parser(nil, nil, { error = false }) then

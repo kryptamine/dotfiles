@@ -29,22 +29,6 @@ return {
       ]],
 				},
 			},
-			terminal = {
-				enabled = true,
-				win = {
-					position = "float",
-					border = "single",
-				},
-			},
-		},
-		keys = {
-			{
-				"<c-t>",
-				function()
-					Snacks.terminal.toggle()
-				end,
-				desc = "Toggle Terminal",
-			},
 		},
 	},
 }

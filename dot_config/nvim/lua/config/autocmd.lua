@@ -134,3 +134,18 @@ vim.api.nvim_create_autocmd('FileType', {
     end)
   end,
 })
+
+-- A restored session still brings back the alternate file of each window as a
+-- hidden buffer. Keep only what is actually on screen.
+vim.api.nvim_create_autocmd('User', {
+  desc = 'Drop hidden buffers after restoring a session',
+  group = vim.api.nvim_create_augroup('session_visible_only', { clear = true }),
+  pattern = 'PersistenceLoadPost',
+  callback = function()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.bo[buf].buflisted and #vim.fn.win_findbuf(buf) == 0 then
+        vim.api.nvim_buf_delete(buf, {})
+      end
+    end
+  end,
+})
