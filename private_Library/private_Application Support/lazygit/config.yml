@@ -30,6 +30,10 @@ git:
     - colorArg: always
       command: diff-so-fancy
 quitOnTopLevelReturn: true
+os:
+  # Inside Neovim's terminal, open files in the parent Neovim instead of a
+  # nested one.
+  editPreset: "nvim-remote"
 customCommands:
   - key: <c-g>
     description: Pick AI commit

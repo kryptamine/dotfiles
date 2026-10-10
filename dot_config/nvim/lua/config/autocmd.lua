@@ -33,9 +33,15 @@ vim.api.nvim_create_autocmd('User', {
         local bufnr = vim.fn.bufnr(path)
 
         if bufnr ~= -1 then
-          Snacks.bufdelete.delete {
-            buf = bufnr,
-          }
+          -- Move windows off the buffer first so wiping it keeps the layout.
+          for _, win in ipairs(vim.fn.win_findbuf(bufnr)) do
+            vim.api.nvim_win_call(win, function()
+              vim.cmd.bprevious()
+              if vim.api.nvim_get_current_buf() == bufnr then
+                vim.cmd.enew()
+              end
+            end)
+          end
           vim.cmd.bwipeout { bufnr, bang = true }
         end
       end
@@ -77,5 +83,54 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'qf',
   callback = function(args)
     vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = args.buf, desc = 'Close quickfix list' })
+  end,
+})
+
+-- Files over 1.5MB, or with very long lines (minified), get the "bigfile"
+-- filetype instead of their own, so treesitter and LSP never attach to them.
+vim.filetype.add {
+  pattern = {
+    ['.*'] = {
+      function(path, buf)
+        if not path or not buf or vim.bo[buf].filetype == 'bigfile' then
+          return
+        end
+        if path ~= vim.fs.normalize(vim.api.nvim_buf_get_name(buf)) then
+          return
+        end
+        local size = vim.fn.getfsize(path)
+        if size <= 0 then
+          return
+        end
+        if size > 1.5 * 1024 * 1024 then
+          return 'bigfile'
+        end
+        local lines = vim.api.nvim_buf_line_count(buf)
+        return (size - lines) / lines > 1000 and 'bigfile' or nil
+      end,
+    },
+  },
+}
+
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Keep big files cheap to edit',
+  group = vim.api.nvim_create_augroup('bigfile', { clear = true }),
+  pattern = 'bigfile',
+  callback = function(args)
+    local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(args.buf), ':p:~:.')
+    vim.notify(('Big file detected: %s. Treesitter and LSP are off.'):format(name), vim.log.levels.WARN)
+    vim.api.nvim_buf_call(args.buf, function()
+      vim.wo[0][0].foldmethod = 'manual'
+      vim.wo[0][0].statuscolumn = ''
+      vim.wo[0][0].conceallevel = 0
+    end)
+    vim.b[args.buf].completion = false
+    -- Fall back to the regex syntax of the real filetype.
+    local ft = vim.filetype.match { buf = args.buf } or ''
+    vim.schedule(function()
+      if vim.api.nvim_buf_is_valid(args.buf) then
+        vim.bo[args.buf].syntax = ft
+      end
+    end)
   end,
 })

@@ -39,6 +39,9 @@ return {
 			},
 			defaults = {
 				file_icons = "mini",
+				-- File name ahead of its directory, so long paths never push the
+				-- name out of the list window.
+				formatter = "path.filename_first",
 			},
 			keymap = {
 				builtin = {

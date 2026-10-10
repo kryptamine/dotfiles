@@ -35,6 +35,7 @@ return {
 			vim.api.nvim_set_hl(0, "FzfLuaPreviewBorder", { bg = bgColor, fg = "#323232" })
 			vim.api.nvim_set_hl(0, "FzfLuaNormal", { bg = bgColor })
 			vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = bgColor })
+			vim.api.nvim_set_hl(0, "FzfLuaDirPart", { link = "NonText" })
 		end,
 	},
 }
