@@ -72,6 +72,12 @@ local function spawn(cmd, opts)
 		cwd = opts.cwd,
 		on_exit = function()
 			if vim.api.nvim_buf_is_valid(buf) then
+				-- Close the float first: deleting the current buffer while no
+				-- listed buffer exists (e.g. on the dashboard) makes nvim replace
+				-- every window's buffer with an empty one.
+				for _, shown in ipairs(vim.fn.win_findbuf(buf)) do
+					pcall(vim.api.nvim_win_close, shown, true)
+				end
 				vim.api.nvim_buf_delete(buf, { force = true })
 			end
 			vim.cmd.checktime()
