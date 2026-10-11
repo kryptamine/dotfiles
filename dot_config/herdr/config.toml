@@ -32,4 +32,7 @@ peach = "#cc8c3c"       # brown (no ANSI slot)
 delivery = "off"
 
 [ui.sidebar.spaces]
-rows = [["state_icon", "workspace"], ["$topic"]]
+rows = [
+    [{ token = "$topic", bold = true, dim = false }],
+    ["state_icon", "workspace", "branch", "git_status"],
+]
