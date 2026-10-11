@@ -33,6 +33,6 @@ delivery = "off"
 
 [ui.sidebar.spaces]
 rows = [
-    [{ token = "$topic", bold = true, dim = false }],
     ["state_icon", "workspace", "branch", "git_status"],
+    [{ token = "$topic", bold = true, dim = false }],
 ]
