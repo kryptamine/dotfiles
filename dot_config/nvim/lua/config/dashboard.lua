@@ -173,6 +173,7 @@ local function open()
 	vim.keymap.set("n", "s", function()
 		require("persistence").load()
 	end, { buffer = buf, nowait = true, desc = "Restore Session" })
+	vim.keymap.set("n", "q", "<Cmd>qa<CR>", { buffer = buf, nowait = true, desc = "Quit" })
 end
 
 vim.api.nvim_create_autocmd("StdinReadPre", {
