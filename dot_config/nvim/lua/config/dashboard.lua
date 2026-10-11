@@ -33,9 +33,9 @@ llllll........ddddddddrr
 .....l...........dd...rr]]
 
 local wordmark = [[
-┏┓╻┏━╸┏━┓╻ ╻╻┏┳┓
-┃┗┫┣╸ ┃ ┃┃┏┛┃┃┃┃
-╹ ╹┗━╸┗━┛┗┛ ╹╹ ╹]]
+╭╮╷╭─╴╭─╮╷ ╷╷╭┬╮
+│╰┤├╴ │ ││╭╯││││
+╵ ╵╰─╴╰─╯╰╯ ╵╵ ╵]]
 
 local wordmark_mask = [[
 rrrrrrrrrlllllll
