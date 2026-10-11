@@ -10,23 +10,9 @@ local function supported(buf)
 	return #vim.lsp.get_clients({ bufnr = buf, method = method }) > 0
 end
 
-local function update()
-	local buf = vim.api.nvim_get_current_buf()
-	timer:start(
-		200,
-		0,
-		vim.schedule_wrap(function()
-			if vim.api.nvim_get_current_buf() ~= buf or not supported(buf) then
-				return
-			end
-			vim.lsp.buf.clear_references()
-			vim.lsp.buf.document_highlight()
-		end)
-	)
-end
-
--- Moves `count` references forward (backward when negative), wrapping around.
-local function jump(count)
+-- Returns the start positions of the highlighted references and the index of
+-- the one under the cursor, if any.
+local function references()
 	local cursor = vim.api.nvim_win_get_cursor(0)
 	local row, col = cursor[1] - 1, cursor[2]
 	local refs, current = {}, nil
@@ -39,6 +25,37 @@ local function jump(count)
 			current = #refs
 		end
 	end
+	return refs, current
+end
+
+-- The buffer and changedtick the current highlights were requested for.
+local shown = {}
+
+local function update()
+	local buf = vim.api.nvim_get_current_buf()
+	timer:start(
+		200,
+		0,
+		vim.schedule_wrap(function()
+			if vim.api.nvim_get_current_buf() ~= buf or not supported(buf) then
+				return
+			end
+			-- Still on one of the highlighted references of an unchanged buffer:
+			-- the highlights are already right, and redoing them would flicker.
+			local tick = vim.api.nvim_buf_get_changedtick(buf)
+			if shown.buf == buf and shown.tick == tick and select(2, references()) then
+				return
+			end
+			shown = { buf = buf, tick = tick }
+			vim.lsp.buf.clear_references()
+			vim.lsp.buf.document_highlight()
+		end)
+	)
+end
+
+-- Moves `count` references forward (backward when negative), wrapping around.
+local function jump(count)
+	local refs, current = references()
 	if not current then
 		return
 	end
