@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Brewfile hash: {{ include "dot_Brewfile" | sha256sum }}
+
+if command -v brew >/dev/null; then
+  brew bundle --file="$HOME/.Brewfile"
+fi
