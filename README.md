@@ -21,3 +21,11 @@ chezmoi init --apply https://github.com/kryptamine/dotfiles
 ```
 
 `init` asks for the git name and email for this machine.
+
+## Linting
+
+```sh
+git config core.hooksPath .githooks
+```
+
+The pre-commit hook checks fish (`fish_indent`), Lua (`stylua`) and shell (`shellcheck`). Run `.githooks/pre-commit` to check by hand.

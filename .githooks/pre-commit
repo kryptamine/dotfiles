@@ -1,0 +1,22 @@
+#!/bin/bash
+# Lints the whole repo. Run directly or via `git config core.hooksPath .githooks`.
+set -uo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+status=0
+
+# Fisher plugin files are vendored, fisher rewrites them on update
+fish_files=$(git ls-files '*.fish' | grep -vE '/(functions/(__z.*|__bass|bass|fisher)|conf\.d/z|completions/fisher)\.fish$')
+if ! fish_indent --check $fish_files; then
+  echo "fish: run 'fish_indent -w <file>'"
+  status=1
+fi
+
+if ! stylua --check dot_config/nvim; then
+  echo "lua: run 'stylua dot_config/nvim'"
+  status=1
+fi
+
+git ls-files -z '*.sh' '*.sh.tmpl' | xargs -0 shellcheck || status=1
+
+exit $status
