@@ -3,3 +3,5 @@ README.md
 .config/fish/*.bak.*
 .config/karabiner/automatic_backups
 .config/gh/hosts.yml
+AGENTS.md
+CLAUDE.md
