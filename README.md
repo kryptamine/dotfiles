@@ -7,7 +7,6 @@ My dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
 - **fish** shell config
 - **neovim** config
 - **kitty** terminal
-- **zellij** multiplexer
 - **lazygit**, **gh** CLI
 - **karabiner** key remaps
 - **starship** prompt
