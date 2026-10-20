@@ -5,16 +5,21 @@ set -gx VISUAL nvim
 # Homebrew (Apple Silicon)
 set -gx HOMEBREW_PREFIX /opt/homebrew
 
-# Base PATH additions (prepend = higher priority)
-fish_add_path -g ~/.local/bin
-fish_add_path -g ~/go/bin
-fish_add_path -g /opt/homebrew/bin
-fish_add_path -g /usr/local/bin
-fish_add_path -g ~/.cargo/bin
+# Base PATH additions (earlier = higher priority)
+fish_add_path -g \
+    ~/.local/bin \
+    /opt/homebrew/bin \
+    /usr/local/bin \
+    ~/.cargo/bin \
+    ~/.grok/bin \
+    ~/.yarn/bin \
+    ~/.local/share/nvim/mason/bin \
+    ~/flutter/bin \
+    ~/Library/Android/sdk/platform-tools
 
 # node_modules binaries (local project)
 if test -d ./node_modules/.bin
-    fish_add_path ./node_modules/.bin
+    fish_add_path -g ./node_modules/.bin
 end
 
 # Go
@@ -33,17 +38,7 @@ if type -q starship
     starship init fish | source
 end
 
-# Pyenv (only interactive)
-if status is-interactive
-    if type -q pyenv
-        pyenv init --path | source
-    end
-end
-
-
 # pnpm
 set -gx PNPM_HOME "$HOME/Library/pnpm"
-if not string match -q -- "$PNPM_HOME/bin" $PATH
-  set -gx PATH "$PNPM_HOME/bin" $PATH
-end
-# pnpm end
+fish_add_path -g $PNPM_HOME/bin
+
