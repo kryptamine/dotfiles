@@ -1,0 +1,4 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Avoid timeout warnings in large git repos
+command_timeout = 1000
