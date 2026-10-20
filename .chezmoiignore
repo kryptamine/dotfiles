@@ -1,0 +1,4 @@
+README.md
+.config/fish/fish_variables
+.config/fish/*.bak.*
+.config/karabiner/automatic_backups
