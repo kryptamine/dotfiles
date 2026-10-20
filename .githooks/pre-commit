@@ -6,7 +6,7 @@ cd "$(git rev-parse --show-toplevel)"
 status=0
 
 # Fisher plugin files are vendored, fisher rewrites them on update
-fish_files=$(git ls-files '*.fish' | grep -vE '/(functions/(__z.*|__bass|bass|fisher)|conf\.d/z|completions/fisher)\.fish$')
+fish_files=$(git ls-files '*.fish' | grep -vE '/(functions/(__bass|bass|fisher|_?fzf_.*)|conf\.d/fzf|completions/(fisher|fzf_configure_bindings))\.fish$')
 if ! fish_indent --check $fish_files; then
   echo "fish: run 'fish_indent -w <file>'"
   status=1
