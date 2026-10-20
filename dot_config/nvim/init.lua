@@ -1,7 +1,7 @@
-require 'config.options'
-require 'config.keymaps'
-require 'config.autocmd'
-require 'config.terminal'
-require 'config.dashboard'
-require 'config.words'
-require 'config.lazy'
+require("config.options")
+require("config.keymaps")
+require("config.autocmd")
+require("config.terminal")
+require("config.dashboard")
+require("config.words")
+require("config.lazy")

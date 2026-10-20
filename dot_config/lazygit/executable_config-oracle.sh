@@ -47,6 +47,7 @@ Only output raw messages, no intro or explanations." |
 )
 
 # Safely split suggestions using `awk` fallback if needed
+# shellcheck disable=SC2016 # expanded by the inner bash
 echo "$commit_suggestions" | awk 'BEGIN {RS="---"; ORS="\0"} {gsub(/^\s+|\s+$/, "", $0); if (length($0) > 0) print}' |
 fzf --height 20 --border --ansi --read0 --no-sort --preview 'echo {} | sed "s/\x0/\n---\n/g"' --with-nth=1 --delimiter='\n' --preview-window=up:wrap |
 xargs -0 -I {} bash -c '
