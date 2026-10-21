@@ -80,23 +80,25 @@
                         ]
                     },
                     {
-                        "description": "Tap left Command for English, right Command for Russian",
+                        "description": "Tap left Shift for English, right Shift for Russian",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "left_command",
+                                    "key_code": "left_shift",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "to": [{ "key_code": "left_command" }],
+                                "parameters": { "basic.to_if_alone_timeout_milliseconds": 300 },
+                                "to": [{ "key_code": "left_shift" }],
                                 "to_if_alone": [{ "select_input_source": { "input_source_id": "^com\\.apple\\.keylayout\\.ABC$" } }],
                                 "type": "basic"
                             },
                             {
                                 "from": {
-                                    "key_code": "right_command",
+                                    "key_code": "right_shift",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "to": [{ "key_code": "right_command" }],
+                                "parameters": { "basic.to_if_alone_timeout_milliseconds": 300 },
+                                "to": [{ "key_code": "right_shift" }],
                                 "to_if_alone": [{ "select_input_source": { "input_source_id": "^com\\.apple\\.keylayout\\.RussianWin$" } }],
                                 "type": "basic"
                             }
