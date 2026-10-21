@@ -11,3 +11,15 @@
 	pager = diff-so-fancy | less --tabs=4 -RF
 [interactive]
 	diffFilter = diff-so-fancy --patch
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true
+[rerere]
+	enabled = true
+[diff]
+	algorithm = histogram
+[merge]
+	conflictStyle = zdiff3
