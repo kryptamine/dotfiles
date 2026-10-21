@@ -91,7 +91,6 @@
                                     }
                                 },
                                 "to": [{ "key_code": "left_arrow" }],
-                                "to_if_alone": [{ "key_code": "left_option" }],
                                 "type": "basic"
                             },
                             {
@@ -103,7 +102,6 @@
                                     }
                                 },
                                 "to": [{ "key_code": "down_arrow" }],
-                                "to_if_alone": [{ "key_code": "left_option" }],
                                 "type": "basic"
                             },
                             {
@@ -115,7 +113,6 @@
                                     }
                                 },
                                 "to": [{ "key_code": "up_arrow" }],
-                                "to_if_alone": [{ "key_code": "left_option" }],
                                 "type": "basic"
                             },
                             {
@@ -127,7 +124,6 @@
                                     }
                                 },
                                 "to": [{ "key_code": "right_arrow" }],
-                                "to_if_alone": [{ "key_code": "left_option" }],
                                 "type": "basic"
                             }
                         ]

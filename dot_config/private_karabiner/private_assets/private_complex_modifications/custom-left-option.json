@@ -17,12 +17,7 @@
               "key_code": "left_arrow"
             }
           ],
-          "type": "basic",
-          "to_if_alone": [
-            {
-              "key_code": "left_option"
-            }
-          ]
+          "type": "basic"
         },
         {
           "from": {
@@ -37,12 +32,7 @@
               "key_code": "down_arrow"
             }
           ],
-          "type": "basic",
-          "to_if_alone": [
-            {
-              "key_code": "left_option"
-            }
-          ]
+          "type": "basic"
         },
         {
           "from": {
@@ -57,12 +47,7 @@
               "key_code": "up_arrow"
             }
           ],
-          "type": "basic",
-          "to_if_alone": [
-            {
-              "key_code": "left_option"
-            }
-          ]
+          "type": "basic"
         },
         {
           "from": {
@@ -77,12 +62,7 @@
               "key_code": "right_arrow"
             }
           ],
-          "type": "basic",
-          "to_if_alone": [
-            {
-              "key_code": "left_option"
-            }
-          ]
+          "type": "basic"
         }
       ]
     }
