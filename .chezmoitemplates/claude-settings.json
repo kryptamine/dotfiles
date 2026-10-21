@@ -1,0 +1,63 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh:*)"
+    ]
+  },
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-wrapper.sh"
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "mattpocock-skills@mattpocock": true,
+    "humanizer@humanizer": true,
+    "frontend-design@claude-plugins-official": true,
+    "ui-ux-pro-max@ui-ux-pro-max-skill": true
+  },
+  "extraKnownMarketplaces": {
+    "mattpocock": {
+      "source": {
+        "source": "github",
+        "repo": "mattpocock/skills"
+      }
+    },
+    "humanizer": {
+      "source": {
+        "source": "github",
+        "repo": "blader/humanizer"
+      }
+    },
+    "ui-ux-pro-max-skill": {
+      "source": {
+        "source": "github",
+        "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+      }
+    }
+  },
+  "language": "Russian",
+  "feedbackDrafts": "off",
+  "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "high"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    },
+    "claude-fable-5-1": {
+      "effortLevel": "xhigh"
+    }
+  },
+  "tui": "fullscreen",
+  "voice": {
+    "enabled": false,
+    "mode": "hold"
+  },
+  "theme": "dark",
+  "editorMode": "normal",
+  "agentPushNotifEnabled": true,
+  "useAutoModeDuringPlan": true,
+  "voiceEnabled": false
+}

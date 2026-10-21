@@ -1,0 +1,8 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* Merges the shared base into ~/.claude/settings.json, keeping per-machine keys (hooks, work plugins, autoMode). */ -}}
+{{- $current := dict -}}
+{{- if .chezmoi.stdin -}}
+{{-   $current = fromJson .chezmoi.stdin -}}
+{{- end -}}
+{{- $base := includeTemplate "claude-settings.json" . | fromJson -}}
+{{- mergeOverwrite $current $base | toPrettyJson "  " }}
