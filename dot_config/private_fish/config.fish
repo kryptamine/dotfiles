@@ -2,25 +2,19 @@
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
-# Homebrew (Apple Silicon)
-set -gx HOMEBREW_PREFIX /opt/homebrew
+# Homebrew (Apple Silicon): PATH, MANPATH, INFOPATH
+/opt/homebrew/bin/brew shellenv fish | source
 
 # Base PATH additions (earlier = higher priority)
+# ~/.local/bin: Antigravity CLI, Hermes Agent
 fish_add_path -g \
     ~/.local/bin \
-    /opt/homebrew/bin \
-    /usr/local/bin \
     ~/.cargo/bin \
     ~/.grok/bin \
     ~/.yarn/bin \
     ~/.local/share/nvim/mason/bin \
     ~/flutter/bin \
     ~/Library/Android/sdk/platform-tools
-
-# node_modules binaries (local project)
-if test -d ./node_modules/.bin
-    fish_add_path -g ./node_modules/.bin
-end
 
 # Go
 set -gx GOPATH $HOME/go
@@ -46,6 +40,3 @@ end
 # pnpm
 set -gx PNPM_HOME "$HOME/Library/pnpm"
 fish_add_path -g $PNPM_HOME/bin
-
-# Antigravity CLI
-fish_add_path -g $HOME/.local/bin
