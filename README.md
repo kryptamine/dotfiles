@@ -1,6 +1,10 @@
-# dotfiles
+<p align="center">
+  <img src="banner.png" alt="dotfiles banner">
+</p>
 
-My macOS dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
+<h1 align="center">dotfiles</h1>
+
+<p align="center">My macOS dotfiles, managed with <a href="https://www.chezmoi.io/">chezmoi</a>.</p>
 
 ## What's inside
 
