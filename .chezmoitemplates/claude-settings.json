@@ -7,14 +7,15 @@
   "model": "opus",
   "statusLine": {
     "type": "command",
-    "command": "bash ~/.claude/statusline-wrapper.sh"
+    "command": "/opt/homebrew/bin/bun --env-file /dev/null ~/.claude/plugins/claude-hud/statusline.mjs"
   },
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true,
     "mattpocock-skills@mattpocock": true,
     "humanizer@humanizer": true,
     "frontend-design@claude-plugins-official": true,
-    "ui-ux-pro-max@ui-ux-pro-max-skill": true
+    "ui-ux-pro-max@ui-ux-pro-max-skill": true,
+    "claude-hud@claude-hud": true
   },
   "extraKnownMarketplaces": {
     "mattpocock": {
@@ -33,6 +34,12 @@
       "source": {
         "source": "github",
         "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+      }
+    },
+    "claude-hud": {
+      "source": {
+        "source": "github",
+        "repo": "jarrodwatts/claude-hud"
       }
     }
   },

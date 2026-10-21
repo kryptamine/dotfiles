@@ -13,7 +13,7 @@ My macOS dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
 - **starship** prompt
 - **Brewfile** with all packages (brew, casks, go tools)
 - **git** and **ssh** config
-- **Claude Code**: settings, `CLAUDE.md`, statusline
+- **Claude Code**: settings, `CLAUDE.md`, [claude-hud](https://github.com/jarrodwatts/claude-hud) statusline
 
 ## Setup on a new Mac
 
@@ -71,6 +71,8 @@ chezmoi runs in symlink mode: most files in `~` link straight into the repo, so 
 ## Claude Code
 
 `~/.claude/settings.json` is a real file, not a symlink: `chezmoi apply` merges the shared base from `.chezmoitemplates/claude-settings.json` into it and keeps per-machine keys (herdr hooks, work plugins, `autoMode`). A setting changed with `/config` stays local until you copy it into the base.
+
+On a new Mac, run `/claude-hud:setup` once in Claude Code to install the statusline launcher, then `chezmoi apply ~/.claude/settings.json` to restore the portable statusline command.
 
 ## Fish
 
