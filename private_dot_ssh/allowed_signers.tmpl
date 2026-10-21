@@ -1,0 +1,1 @@
+{{ .email }} namespaces="git" {{ output "cat" (.signingkey | replace "~" .chezmoi.homeDir) | trim }}

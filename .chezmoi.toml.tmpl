@@ -1,7 +1,9 @@
 {{- $name := promptStringOnce . "name" "Git name" -}}
 {{- $email := promptStringOnce . "email" "Git email" -}}
+{{- $signingkey := promptStringOnce . "signingkey" "SSH public key for signing commits" "~/.ssh/id_rsa.pub" -}}
 mode = "symlink"
 
 [data]
     name = {{ $name | quote }}
     email = {{ $email | quote }}
+    signingkey = {{ $signingkey | quote }}

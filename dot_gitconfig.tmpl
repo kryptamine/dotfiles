@@ -1,6 +1,7 @@
 [user]
 	name = {{ .name }}
 	email = {{ .email }}
+	signingkey = {{ .signingkey }}
 [credential "https://github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
@@ -23,3 +24,11 @@
 	algorithm = histogram
 [merge]
 	conflictStyle = zdiff3
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true

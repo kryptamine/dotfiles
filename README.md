@@ -23,7 +23,7 @@ My macOS dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
    brew install chezmoi
    ```
 
-2. Apply the dotfiles. `init` asks for the git name and email for this machine (work or personal), then `brew bundle` installs everything from the Brewfile:
+2. Apply the dotfiles. `init` asks for the git name, email and commit signing key for this machine (work or personal), then `brew bundle` installs everything from the Brewfile:
 
    ```sh
    chezmoi init --apply https://github.com/kryptamine/dotfiles
@@ -39,6 +39,8 @@ My macOS dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
 4. Copy SSH keys into `~/.ssh` (they are not in the repo). `~/.ssh/config` expects:
    - `id_rsa` for `github.com-personal` (this repo, personal projects)
    - `gh-enterprise` for `github.com` (work)
+
+   Commits are signed with the SSH key `init` asks for (default `~/.ssh/id_rsa.pub`). Add it on GitHub as a **Signing key** (Settings → SSH and GPG keys) so commits show as Verified.
 
 5. Log in to GitHub CLI: `gh auth login`. Accounts are per machine, `hosts.yml` is not synced.
 
