@@ -7,7 +7,7 @@ My macOS dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
 - **fish** shell: zoxide, fzf.fish, git abbreviations
 - **neovim** config (lazy.nvim)
 - **ghostty** and **kitty** terminals
-- **herdr** agent multiplexer, **hunk** diff viewer
+- **herdr** agent multiplexer
 - **lazygit**, **gh** CLI
 - **karabiner** key remaps
 - **starship** prompt
