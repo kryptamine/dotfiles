@@ -9,4 +9,20 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{ import = "plugins" },
+}, {
+	change_detection = { enabled = false },
+	performance = {
+		rtp = {
+			-- netrw is replaced by oil.
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
+	},
 })
