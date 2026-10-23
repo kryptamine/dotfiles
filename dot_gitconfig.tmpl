@@ -16,6 +16,7 @@
 	defaultBranch = main
 [push]
 	autoSetupRemote = true
+	followTags = true
 [pull]
 	rebase = true
 [fetch]
@@ -29,6 +30,7 @@
 	enabled = true
 [diff]
 	algorithm = histogram
+	mnemonicPrefix = true
 	colorMoved = default
 [merge]
 	conflictStyle = zdiff3
@@ -41,3 +43,8 @@
 	verbose = true
 [tag]
 	gpgsign = true
+	sort = version:refname
+[help]
+	autocorrect = prompt
+[column]
+	ui = auto
