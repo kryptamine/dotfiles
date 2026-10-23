@@ -19,10 +19,8 @@ local options = {
 	formatters_by_ft = {
 		lua = { "stylua" },
 		python = { "isort", "black" },
-		c = { "clang-format" },
 		go = { "gofmt" },
 		rust = { "rustfmt", lsp_format = "fallback" },
-		http = { "kulala-fmt" },
 	},
 
 	default_format_opts = {
