@@ -1,13 +1,53 @@
+local servers = {
+	lua_ls = {
+		settings = {
+			Lua = {
+				diagnostics = {
+					globals = { "vim" },
+				},
+				completion = {
+					callSnippet = "Replace",
+				},
+			},
+		},
+	},
+	clangd = {
+		cmd = { "clangd", "--background-index" },
+		single_file_support = true,
+	},
+	tsc = {
+		cmd = function(dispatchers, config)
+			local cmd = "tsc"
+			local root_dir = (config or {}).root_dir
+			if root_dir then
+				local local_tsgo = vim.fs.joinpath(root_dir, "node_modules/.bin/tsgo")
+				if vim.fn.executable(local_tsgo) == 1 then
+					cmd = local_tsgo
+				end
+			end
+			return vim.lsp.rpc.start({ cmd, "--lsp", "--stdio" }, dispatchers)
+		end,
+	},
+	html = {},
+	cssls = {},
+	cssmodules_ls = {},
+	eslint = {},
+	gopls = {},
+	ruff = {},
+	intelephense = {},
+	terraformls = {},
+	tflint = {},
+	rust_analyzer = {},
+	stylua = {},
+}
+
+-- Non-LSP tools mason installs alongside the servers.
+local tools = { "prettierd" }
+
 return {
 	{
-		"mason-org/mason-lspconfig.nvim",
+		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
-		opts = {},
-		dependencies = {
-			{ "mason-org/mason.nvim", opts = {} },
-			"neovim/nvim-lspconfig",
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
-		},
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
@@ -24,64 +64,25 @@ return {
 				end,
 			})
 
-			local servers = {
-				lua_ls = {
-					settings = {
-						Lua = {
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				},
-				clangd = {
-					cmd = { "clangd", "--background-index" },
-					single_file_support = true,
-				},
-				tsc = {
-					cmd = function(dispatchers, config)
-						local cmd = "tsc"
-						local root_dir = (config or {}).root_dir
-						if root_dir then
-							local local_tsgo = vim.fs.joinpath(root_dir, "node_modules/.bin/tsgo")
-							if vim.fn.executable(local_tsgo) == 1 then
-								cmd = local_tsgo
-							end
-						end
-						return vim.lsp.rpc.start({ cmd, "--lsp", "--stdio" }, dispatchers)
-					end,
-				},
-			}
-
-			local ensure_installed = vim.tbl_keys(servers or {})
-			vim.list_extend(ensure_installed, {
-				"stylua",
-				"html",
-				"cssls",
-				"eslint",
-				"gopls",
-				"ruff",
-				"prettierd",
-				"intelephense",
-				"terraformls",
-				"tflint",
-				"cssmodules-language-server",
-				"rust_analyzer",
-			})
-
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
 			for server_name, config in pairs(servers) do
 				vim.lsp.config(server_name, config)
 			end
-
-			require("mason-lspconfig").setup({
-				ensure_installed = vim.tbl_keys(servers),
-				automatic_enable = true,
-			})
+			vim.lsp.enable(vim.tbl_keys(servers))
 		end,
+	},
+	-- Servers run from mason's bin dir, which options.lua puts on PATH, so mason
+	-- itself only loads to install or update them.
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		cmd = { "MasonToolsInstall", "MasonToolsInstallSync", "MasonToolsUpdate", "MasonToolsClean" },
+		dependencies = {
+			{ "mason-org/mason.nvim", cmd = "Mason", opts = {} },
+			-- Translates the lspconfig names in ensure_installed to mason packages.
+			{ "mason-org/mason-lspconfig.nvim", opts = { automatic_enable = false } },
+		},
+		opts = {
+			ensure_installed = vim.list_extend(vim.tbl_keys(servers), tools),
+			run_on_start = false,
+		},
 	},
 }

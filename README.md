@@ -57,7 +57,7 @@
    git config core.hooksPath .githooks
    ```
 
-7. Open `nvim`: lazy.nvim installs plugins on first launch, mason installs LSP servers and formatters.
+7. Open `nvim`: lazy.nvim installs plugins on first launch. Then run `:MasonToolsInstall` once to install LSP servers and formatters; mason doesn't load on startup, so it won't install them by itself.
 
 ## Day-to-day
 

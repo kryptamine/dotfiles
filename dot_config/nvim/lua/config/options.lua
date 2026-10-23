@@ -87,6 +87,9 @@ end
 
 vim.opt.wildignore:append({ "*/node_modules/*" })
 
+-- What mason's setup() would do, without loading mason on startup.
+vim.env.PATH = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin") .. ":" .. vim.env.PATH
+
 vim.scriptencoding = "utf-8"
 
 vim.g.mapleader = " "
