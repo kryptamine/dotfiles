@@ -2,6 +2,9 @@
 
 # Brewfile hash: {{ include "dot_Brewfile" | sha256sum }}
 
-if command -v brew >/dev/null; then
-  brew bundle --file="$HOME/.Brewfile"
+if ! command -v brew >/dev/null; then
+  echo "brew not found, skipping brew bundle. Install Homebrew: https://brew.sh" >&2
+  exit 0
 fi
+
+brew bundle --file="$HOME/.Brewfile"
