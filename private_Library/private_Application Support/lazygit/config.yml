@@ -34,9 +34,3 @@ os:
   # Inside Neovim's terminal, open files in the parent Neovim instead of a
   # nested one.
   editPreset: "nvim-remote"
-customCommands:
-  - key: <c-g>
-    description: Pick AI commit
-    command: aicommit2 --generate 3
-    context: files
-    output: terminal
