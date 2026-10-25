@@ -1,0 +1,18 @@
+onboarding = false
+
+# Theme generated from the Neovim colorscheme checkout, so every tool shares
+# one palette. Edit palette.lua there, run `make extras`, then `chezmoi apply`.
+{{ $theme := joinPath .chezmoi.homeDir "Work/gruber-darker-renaissance/extras/herdr/gruber-darker-renaissance.toml" -}}
+{{ if stat $theme }}{{ include $theme | trim }}{{ end }}
+
+[ui.toast]
+delivery = "off"
+
+[ui.sidebar.spaces]
+rows = [
+    ["state_icon", "workspace", "branch", "git_status"],
+    [{ token = "$topic", bold = true, dim = false }],
+]
+
+[ui]
+prompt_new_tab_name = false
