@@ -1,7 +1,6 @@
 return {
 	{
-		dir = "~/Work/gruber-darker-renaissance",
-		name = "gruber-darker-renaissance",
+		"kryptamine/gruber-darker-renaissance",
 		lazy = false,
 		priority = 1000,
 		config = function()
