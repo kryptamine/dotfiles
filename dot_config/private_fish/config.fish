@@ -24,12 +24,6 @@ fish_add_path -g $GOPATH/bin
 set -gx CPATH /opt/homebrew/include
 set -gx LIBRARY_PATH /opt/homebrew/lib
 
-# lazygit merges these files; its theme comes from the colorscheme checkout
-set -l lazygit_theme ~/Work/gruber-darker-renaissance/extras/lazygit/gruber-darker-renaissance.yml
-if test -f $lazygit_theme
-    set -gx LG_CONFIG_FILE "$HOME/Library/Application Support/lazygit/config.yml,$lazygit_theme"
-end
-
 # Disable fish greeting
 set -g fish_greeting
 
