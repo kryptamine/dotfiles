@@ -27,6 +27,11 @@ set -gx LIBRARY_PATH /opt/homebrew/lib
 # Disable fish greeting
 set -g fish_greeting
 
+# Theme: generated from the gruber-darker-renaissance palette
+if status is-interactive
+    fish_config theme choose gruber-darker-renaissance
+end
+
 # Starship
 if status is-interactive; and type -q starship
     starship init fish | source
