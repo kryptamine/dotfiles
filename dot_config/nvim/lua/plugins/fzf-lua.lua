@@ -11,10 +11,10 @@ return {
 				height = 0.8,
 				row = 0.5,
 				col = 0.5,
-				border = "rounded",
+				border = "single",
 				title_pos = "center",
 				preview = {
-					border = "rounded",
+					border = "single",
 					layout = "flex",
 					-- Compared against the picker width, not the editor's: 95 is
 					-- 80% of 120 columns.
