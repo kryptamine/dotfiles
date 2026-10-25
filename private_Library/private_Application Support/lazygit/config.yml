@@ -4,19 +4,19 @@ gui:
   showBottomLine: false
   # Copied from gruber-darker-renaissance extras/; copy it again after a palette change.
   theme:
-    activeBorderColor: ["#fbde55", bold]
+    activeBorderColor: ["#efd45b", bold]
     # Panel titles take the border color, so this stays a readable gray
     inactiveBorderColor: ["#555555"]
-    searchingActiveBorderColor: ["#a7bbe3", bold]
-    optionsTextColor: ["#a7bbe3"]
+    searchingActiveBorderColor: ["#9fb2d6", bold]
+    optionsTextColor: ["#9fb2d6"]
     selectedLineBgColor: ["#1e1e1e"]
     inactiveViewSelectedLineBgColor: ["#181818"]
     cherryPickedCommitFgColor: ["#000000"]
-    cherryPickedCommitBgColor: ["#a7bbe3"]
+    cherryPickedCommitBgColor: ["#9fb2d6"]
     markedBaseCommitFgColor: ["#000000"]
-    markedBaseCommitBgColor: ["#fbde55"]
-    unstagedChangesColor: ["#e74e4e"]
-    defaultFgColor: ["#dcdcd6"]
+    markedBaseCommitBgColor: ["#efd45b"]
+    unstagedChangesColor: ["#d64c4b"]
+    defaultFgColor: ["#d2d2cc"]
     # Without this lazygit hashes each author to an arbitrary truecolor
     authorColors:
       "*": "#96a29c"
