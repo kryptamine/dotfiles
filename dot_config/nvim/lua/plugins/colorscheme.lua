@@ -1,11 +1,11 @@
 return {
 	{
-		"https://github.com/qwlp/gruber-darker.nvim",
-		name = "gruber-darker",
+		dir = "~/Work/gruber-darker-renaissance",
+		name = "gruber-darker-renaissance",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("gruber-darker").setup({
+			local opts = {
 				bold = false,
 				undercurl = true,
 				underline = true,
@@ -20,20 +20,24 @@ return {
 					operators = false,
 					folds = true,
 				},
-			})
-			vim.api.nvim_set_hl(0, "@punctuation.delimiter.jsdoc", { fg = "#73D936" })
-			vim.cmd.colorscheme("gruber-darker")
+				on_highlights = function(hl, c)
+					hl["@punctuation.delimiter.jsdoc"] = { fg = c.green }
+				end,
+			}
 
-			local bgColor = "#000000"
-			local labelBg = "#FFDD33"
+			require("gruber-darker-renaissance").setup(opts)
+			vim.cmd.colorscheme("gruber-darker-renaissance")
 
-			vim.api.nvim_set_hl(0, "FzfLuaTitle", { fg = bgColor, bg = labelBg })
-			vim.api.nvim_set_hl(0, "FzfLuaPreviewTitle", { fg = bgColor, bg = labelBg })
-			vim.api.nvim_set_hl(0, "FzfLuaBorder", { bg = bgColor, fg = "#323232" })
-			vim.api.nvim_set_hl(0, "FzfLuaPreviewBorder", { bg = bgColor, fg = "#323232" })
-			vim.api.nvim_set_hl(0, "FzfLuaNormal", { bg = bgColor })
-			vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = bgColor })
-			vim.api.nvim_set_hl(0, "FzfLuaDirPart", { link = "NonText" })
+			-- Reload the theme from disk while developing it
+			vim.api.nvim_create_user_command("ThemeReload", function()
+				for name in pairs(package.loaded) do
+					if name:match("^gruber%-darker%-renaissance") then
+						package.loaded[name] = nil
+					end
+				end
+				require("gruber-darker-renaissance").setup(opts)
+				vim.cmd.colorscheme("gruber-darker-renaissance")
+			end, { desc = "Reload gruber-darker-renaissance colorscheme" })
 		end,
 	},
 }
