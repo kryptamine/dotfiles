@@ -41,7 +41,7 @@ return {
 					},
 				},
 				menu = {
-					border = nil,
+					border = "single",
 					scrolloff = 1,
 					scrollbar = false,
 					draw = {
