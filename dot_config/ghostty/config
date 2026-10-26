@@ -1,4 +1,4 @@
-# Ghostty config — ported from ~/.config/kitty/kitty.conf
+# Ghostty config
 
 # ── Shell / integration ───────────────────────────────────────────────
 # No `command` here on purpose: fish is already the login shell, so Ghostty
@@ -7,18 +7,17 @@
 # opens on launch — cmd+T / cmd+N still give a plain fish shell.
 initial-command = /opt/homebrew/bin/herdr
 shell-integration = fish
-# `no-title` is deliberately absent: without kitty's tab_title_template the
+# `no-title` is deliberately absent: Ghostty has no tab title template, so the
 # shell has to be the one setting window/tab titles.
 shell-integration-features = no-cursor,sudo
 
-font-family = IosevkaTerm Nerd Font
+font-family = Iosevka Term
 font-style-italic = false
 font-style-bold-italic = false
 font-size = 21
 font-thicken = false
 font-synthetic-style = no-bold
 adjust-cell-height = 10%
-adjust-icon-height = -50%
 adjust-box-thickness = 1
 adjust-underline-thickness = 1
 adjust-underline-position = 2
