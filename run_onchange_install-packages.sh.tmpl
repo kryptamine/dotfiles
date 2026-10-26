@@ -8,3 +8,5 @@ if ! command -v brew >/dev/null; then
 fi
 
 brew bundle --file="$HOME/.Brewfile"
+# Uninstall anything not listed, so every machine ends up with the same set.
+brew bundle cleanup --force --file="$HOME/.Brewfile"
