@@ -11,6 +11,9 @@ defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write -g NSAutomaticCapitalizationEnabled -bool false
 defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
 
+# No font smoothing: on Retina it only thickens glyphs
+defaults -currentHost write -g AppleFontSmoothing -int 0
+
 # Disable Ctrl+Space / Ctrl+Opt+Space input source switching (Karabiner Shift taps do it)
 for id_mods in 60:262144 61:786432; do
   id=${id_mods%%:*}
