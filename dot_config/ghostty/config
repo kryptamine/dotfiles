@@ -18,6 +18,7 @@ font-size = 21
 font-thicken = false
 font-synthetic-style = no-bold
 adjust-cell-height = 10%
+adjust-icon-height = -50%
 adjust-box-thickness = 1
 adjust-underline-thickness = 1
 adjust-underline-position = 2
