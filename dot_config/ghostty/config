@@ -11,13 +11,12 @@ shell-integration = fish
 # shell has to be the one setting window/tab titles.
 shell-integration-features = no-cursor,sudo
 
-font-family = IosevkaTerm Nerd Font Mono
+font-family = IosevkaTerm Nerd Font
 font-style-italic = false
 font-style-bold-italic = false
 font-size = 21
 font-thicken = false
 font-synthetic-style = no-bold
-font-feature = liga
 adjust-cell-height = 10%
 adjust-box-thickness = 1
 adjust-underline-thickness = 1
