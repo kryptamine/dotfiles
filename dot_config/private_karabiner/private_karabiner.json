@@ -110,7 +110,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$", "^net\\.kovidgoyal\\.kitty$"],
+                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$"],
                                         "type": "frontmost_application_unless"
                                     }
                                 ],
@@ -129,7 +129,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$", "^net\\.kovidgoyal\\.kitty$"],
+                                        "bundle_identifiers": ["^com\\.mitchellh\\.ghostty$"],
                                         "type": "frontmost_application_unless"
                                     }
                                 ],

@@ -10,7 +10,7 @@
 
 - **fish** shell: zoxide, fzf.fish, git abbreviations
 - **neovim** config (lazy.nvim)
-- **ghostty** and **kitty** terminals
+- **ghostty** terminal
 - **herdr** agent multiplexer
 - **lazygit**, **gh** CLI
 - **karabiner** key remaps

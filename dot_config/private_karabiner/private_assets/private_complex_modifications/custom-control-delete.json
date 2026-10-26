@@ -22,8 +22,7 @@
             {
               "type": "frontmost_application_unless",
               "bundle_identifiers": [
-                "^com\\.mitchellh\\.ghostty$",
-                "^net\\.kovidgoyal\\.kitty$"
+                "^com\\.mitchellh\\.ghostty$"
               ]
             }
           ]
@@ -46,8 +45,7 @@
             {
               "type": "frontmost_application_unless",
               "bundle_identifiers": [
-                "^com\\.mitchellh\\.ghostty$",
-                "^net\\.kovidgoyal\\.kitty$"
+                "^com\\.mitchellh\\.ghostty$"
               ]
             }
           ]
