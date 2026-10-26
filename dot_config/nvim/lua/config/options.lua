@@ -76,6 +76,9 @@ local options = {
 	undofile = true,
 	shell = "/opt/homebrew/bin/fish",
 
+	-- Default border for every float that doesn't set its own
+	winborder = "single",
+
 	fillchars = {
 		eob = " ",
 	},
@@ -104,7 +107,6 @@ vim.diagnostic.config({
 		severity = vim.diagnostic.severity.ERROR,
 	},
 	float = {
-		border = "single",
 		source = "if_many",
 	},
 })
@@ -112,16 +114,6 @@ vim.diagnostic.config({
 -- Built-in (experimental) message/cmdline UI, replaces noice.nvim.
 -- With cmdheight=0 messages go to the ephemeral "msg" window instead of
 -- expanding the cmdline.
--- ui2 leaves the "msg" window on 'winborder', which is unset here. Has to be
--- registered before enable(), which is what creates the window.
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "msg",
-	group = vim.api.nvim_create_augroup("ui2_msg_border", { clear = true }),
-	callback = function()
-		vim.api.nvim_win_set_config(0, { border = "single" })
-	end,
-})
-
 require("vim._core.ui2").enable({
 	msg = {
 		targets = "msg",

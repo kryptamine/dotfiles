@@ -8,7 +8,6 @@ local function float_config()
 		row = math.floor((vim.o.lines - height) / 2) - 1,
 		col = math.floor((vim.o.columns - width) / 2) - 1,
 		style = "minimal",
-		border = "single",
 	}
 end
 

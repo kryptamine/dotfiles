@@ -59,7 +59,7 @@ return {
 					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 					map("<leader>b", function()
-						vim.lsp.buf.hover({ border = "single", silent = true })
+						vim.lsp.buf.hover({ silent = true })
 					end, "Display variable type")
 				end,
 			})
