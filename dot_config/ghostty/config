@@ -21,12 +21,11 @@ font-feature = liga
 adjust-cell-height = 10%
 adjust-box-thickness = 1
 adjust-underline-thickness = 1
+adjust-underline-position = 2
 adjust-cursor-thickness = 2
 
 theme = gruber-darker-renaissance
 alpha-blending = linear-corrected
-background-opacity = 0.95
-background-blur = 20
 minimum-contrast = 1.1
 
 cursor-style = block
@@ -37,6 +36,7 @@ window-colorspace = display-p3
 window-padding-x = 12
 window-padding-y = 8
 window-padding-balance = true
+window-padding-color = extend
 window-save-state = always
 quit-after-last-window-closed = true
 resize-overlay = never
