@@ -1,1 +1,7 @@
-{{ .email }} namespaces="git" {{ output "cat" (.signingkey | replace "~" .chezmoi.homeDir) | trim }}
+{{- /* The key is copied in by hand after init, so skip it until it exists instead of failing the apply. */ -}}
+{{- $key := .signingkey | replace "~" .chezmoi.homeDir -}}
+{{- if stat $key -}}
+{{ .email }} namespaces="git" {{ output "cat" $key | trim }}
+{{ else -}}
+{{   warnf "%s not found, allowed_signers left empty. Copy the key and rerun chezmoi apply." $key -}}
+{{ end -}}

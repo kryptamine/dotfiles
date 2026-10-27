@@ -13,9 +13,7 @@ fish_add_path -g \
     ~/.cargo/bin \
     ~/.grok/bin \
     ~/.yarn/bin \
-    ~/.local/share/nvim/mason/bin \
-    ~/flutter/bin \
-    ~/Library/Android/sdk/platform-tools
+    ~/.local/share/nvim/mason/bin
 
 # Go
 set -gx GOPATH $HOME/go
