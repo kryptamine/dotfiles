@@ -43,6 +43,7 @@ return {
 			end
 
 			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("treesitter_start", { clear = true }),
 				callback = function(args)
 					local buf, filetype = args.buf, args.match
 
@@ -59,7 +60,7 @@ return {
 					vim.treesitter.start(buf, language)
 
 					-- enables treesitter based indentation
-					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 				end,
 			})
 		end,
