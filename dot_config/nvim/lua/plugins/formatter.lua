@@ -19,7 +19,7 @@ local options = {
 	formatters_by_ft = {
 		lua = { "stylua" },
 		python = { "ruff_organize_imports", "ruff_format" },
-		go = { "gofmt" },
+		go = { "goimports", "gofumpt" },
 		rust = { "rustfmt", lsp_format = "fallback" },
 	},
 
