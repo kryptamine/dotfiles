@@ -1,0 +1,5 @@
+#!/bin/bash
+# Sets the desktop picture on every display. Rerun by chezmoi when the image changes.
+# Wallpaper hash: {{ include "dot_local/share/wallpapers/wallpaper.jpg" | sha256sum }}
+
+osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"$HOME/.local/share/wallpapers/wallpaper.jpg\""

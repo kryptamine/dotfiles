@@ -15,6 +15,7 @@
 - **lazygit**, **gh** CLI
 - **karabiner** key remaps
 - **starship** prompt
+- **wallpaper**, set on every display by a `run_onchange` script
 - **Brewfile** with all packages (brew, casks, go tools)
 - **git** and **ssh** config
 - **Claude Code**: settings, `CLAUDE.md`, [claude-hud](https://github.com/jarrodwatts/claude-hud) statusline
