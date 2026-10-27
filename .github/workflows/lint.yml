@@ -10,6 +10,6 @@ jobs:
     # macOS so fish_indent, stylua and shellcheck come from Homebrew, same as locally
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: brew install fish stylua shellcheck
       - run: .githooks/pre-commit
