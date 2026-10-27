@@ -19,6 +19,7 @@ claude-hud ignores a symlinked config (it opens it with `O_NOFOLLOW`), so `dot_c
 ## Packages and plugins
 
 - New tool: add it to `dot_Brewfile`; `run_onchange_install-packages.sh.tmpl` reruns `brew bundle` when the Brewfile changes.
+- `brew bundle cleanup --force` is intentional: both machines run the exact same software, anything installed goes into the Brewfile first. Don't suggest a per-machine Brewfile or dropping `--force`.
 - Fish plugins are vendored fisher files (`fish_plugins` lists them). Install with `fisher install`, then `chezmoi add` the new files; after `fisher remove`, delete the plugin files from the repo too.
 
 ## Committing
