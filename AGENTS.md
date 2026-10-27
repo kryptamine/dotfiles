@@ -25,3 +25,5 @@ claude-hud ignores a symlinked config (it opens it with `O_NOFOLLOW`), so `dot_c
 ## Committing
 
 Run `.githooks/pre-commit` (fish_indent, stylua, shellcheck) before committing. Write one commit per logical change with a descriptive imperative message.
+
+`main` is protected: no direct pushes, changes land through a PR once the `lint` check (the same pre-commit script, in `.github/workflows/lint.yml`) passes. Merged branches are deleted on GitHub automatically.

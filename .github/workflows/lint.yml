@@ -1,0 +1,15 @@
+name: Lint
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    # macOS so fish_indent, stylua and shellcheck come from Homebrew, same as locally
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install fish stylua shellcheck
+      - run: .githooks/pre-commit
