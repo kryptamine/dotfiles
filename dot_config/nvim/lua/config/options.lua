@@ -34,11 +34,11 @@ local options = {
 	foldenable = false,
 
 	-- What to save in session. No "buffers": only the files visible in windows
-	-- come back, not every buffer the last session had open.
+	-- come back, not every buffer the last session had open. No "resize": it
+	-- saves the terminal's lines/columns, so a session from a big monitor
+	-- forces that size on the laptop screen. Split sizes ("winsize") scale.
 	sessionoptions = {
 		"curdir",
-		"resize",
-		"winpos",
 		"winsize",
 	},
 
