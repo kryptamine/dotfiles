@@ -1,7 +1,5 @@
 local options = {
-	fileencoding = "utf-8",
 	title = true,
-	smartindent = true,
 	cmdheight = 0,
 	laststatus = 3,
 	expandtab = true,
@@ -46,7 +44,8 @@ local options = {
 	swapfile = false,
 	smoothscroll = true,
 	undofile = true,
-	shell = "/opt/homebrew/bin/fish",
+	-- $SHELL can be another shell when nvim is started from a script or agent
+	shell = vim.fn.exepath("fish") ~= "" and vim.fn.exepath("fish") or vim.o.shell,
 
 	-- Default border for every float that doesn't set its own
 	winborder = "single",
