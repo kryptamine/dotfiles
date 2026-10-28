@@ -1,0 +1,2 @@
+# Old target names of renamed or deleted files: symlinks left behind dangle.
+.config/nvim/lua/plugins/auto-session.lua

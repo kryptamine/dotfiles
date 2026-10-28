@@ -12,6 +12,8 @@ The repo is public and shared by a personal and a work laptop. Track configs tha
 
 Any repo-only file (docs, hooks) needs a `.chezmoiignore` entry, or chezmoi copies it into `~`. Dotfiles at the repo root (`.githooks/`) are skipped automatically.
 
+When renaming or deleting a tracked file, add its old target path to `.chezmoiremove`: chezmoi leaves the old symlink in `~` dangling (a dangling `nvim/lua/plugins/*.lua` breaks nvim startup).
+
 `~/.claude/settings.json` is merged, not symlinked: `dot_claude/modify_settings.json` overlays `.chezmoitemplates/claude-settings.json` onto the live file. Shared settings go in the base; work-only or per-machine keys stay in the live file and must never be added to the base.
 
 claude-hud ignores a symlinked config (it opens it with `O_NOFOLLOW`), so `dot_claude/plugins/claude-hud/config.json.tmpl` stays a template to render as a real file.
