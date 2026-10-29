@@ -36,7 +36,9 @@ minimum-contrast = 1.1
 
 cursor-style = block
 cursor-style-blink = false
-macos-titlebar-style = hidden
+# No titlebar, border or rounded corners: a plain rectangle. Edges no longer
+# resize the window, use a window manager or Raycast for that.
+window-decoration = none
 macos-option-as-alt = true
 window-colorspace = display-p3
 window-padding-x = 12
