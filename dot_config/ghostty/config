@@ -6,6 +6,10 @@
 # Autostart the herdr workspace manager, but only in the window Ghostty
 # opens on launch — cmd+T / cmd+N still give a plain fish shell.
 initial-command = /opt/homebrew/bin/herdr
+# herdr starts outside fish, so without these its edit_scrollback falls back to vi.
+# Absolute, since that PATH lacks /opt/homebrew/bin.
+env = EDITOR=/opt/homebrew/bin/nvim
+env = VISUAL=/opt/homebrew/bin/nvim
 shell-integration = fish
 # `no-title` is deliberately absent: Ghostty has no tab title template, so the
 # shell has to be the one setting window/tab titles.
