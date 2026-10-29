@@ -2,3 +2,356 @@
 
 # Avoid timeout warnings in large git repos
 command_timeout = 1000
+
+# The stock module set on one line
+add_newline = false
+# Colors from gruber-darker-renaissance, the same palette as ghostty and nvim
+palette = "gruber"
+
+[line_break]
+disabled = true
+
+[palettes.gruber]
+fg = "#d2d2cc"
+gray = "#8c8c8c"
+yellow = "#efd45b"
+green = "#8ac568"
+red = "#d64c4b"
+niagara = "#9fb2d6"
+wisteria = "#9e95c7"
+brown = "#cc8c3c"
+
+[directory]
+style = "niagara"
+read_only = " 󰌾"
+read_only_style = "red"
+
+[git_branch]
+format = "on [$symbol $branch(:$remote_branch)]($style) "
+symbol = ""
+style = "wisteria"
+
+[git_state]
+style = "brown"
+
+[git_status]
+format = "([$all_status$ahead_behind]($style) )"
+style = "yellow"
+
+[cmd_duration]
+min_time = 2000
+format = "[$duration]($style) "
+style = "gray"
+
+[character]
+success_symbol = "[❯](yellow)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+
+# Nerd Font icons: `starship preset nerd-font-symbols`, minus the sections above
+[aws]
+symbol = " "
+
+[azure]
+symbol = " "
+
+[battery]
+full_symbol = "󰁹 "
+charging_symbol = "󰂄 "
+discharging_symbol = "󰂃 "
+unknown_symbol = "󰂑 "
+empty_symbol = "󰂎 "
+
+[buf]
+symbol = " "
+
+[bun]
+symbol = " "
+
+[c]
+symbol = " "
+
+[cpp]
+symbol = " "
+
+[cmake]
+symbol = " "
+
+[cobol]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[container]
+symbol = " "
+
+[crystal]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[deno]
+symbol = " "
+
+[direnv]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[dotnet]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[erlang]
+symbol = " "
+
+[fennel]
+symbol = " "
+
+[fortran]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
+[gcloud]
+symbol = "󱇶 "
+
+[gleam]
+symbol = " "
+
+[git_commit]
+tag_symbol = '  '
+
+[golang]
+symbol = " "
+
+[gradle]
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = " "
+
+[helm]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[hostname]
+ssh_symbol = " "
+
+[java]
+symbol = " "
+
+[jj_bookmark]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[kotlin]
+symbol = " "
+
+[kubernetes]
+symbol = "󱃾 "
+
+[lua]
+symbol = " "
+
+[maven]
+symbol = " "
+
+[memory_usage]
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
+
+[mojo]
+symbol = "󰈸 "
+
+[nats]
+symbol = " "
+
+[netns]
+symbol = "󰛳 "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[ocaml]
+symbol = " "
+
+[odin]
+symbol = "󰟢 "
+
+[opa]
+symbol = " "
+
+[openstack]
+symbol = " "
+
+[os.symbols]
+AIX = " "
+AlmaLinux = " "
+Alpaquita = " "
+Alpine = " "
+ALTLinux = " "
+Amazon = " "
+Android = " "
+AOSC = " "
+Arch = " "
+Artix = " "
+Bazzite = " "
+Bluefin = " "
+CachyOS = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Elementary = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = " "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Hurd = " "
+Illumos = " "
+InstantOS = " "
+Ios = "󰀷 "
+Kali = " "
+KDENeon = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+Nobara = " "
+OpenBSD = " "
+OpenCloudOS = " "
+openEuler = " "
+openSUSE = " "
+OracleLinux = "󰺡 "
+PikaOS = " "
+Pop = " "
+Raspbian = " "
+Redhat = "󱄛 "
+RedHatEnterprise = "󱄛 "
+Redox = "󰀘 "
+RockyLinux = " "
+Solus = " "
+SUSE = " "
+Ubuntu = " "
+Ultramarine = " "
+Unknown = " "
+Uos = " "
+Void = " "
+Windows = "󰍲 "
+Zorin = " "
+
+[package]
+symbol = "󰏗 "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[pijul_channel]
+symbol = " "
+
+[pixi]
+symbol = "󰏗 "
+
+[pulumi]
+symbol = " "
+
+[purescript]
+symbol = " "
+
+[python]
+symbol = " "
+
+[raku]
+symbol = "󱖊 "
+
+[red]
+symbol = "󱍼 "
+
+[rlang]
+symbol = "󰟔 "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = "󱘗 "
+
+[scala]
+symbol = " "
+
+[shlvl]
+symbol = "󰹍 "
+
+[singularity]
+symbol = " "
+
+[solidity]
+symbol = " "
+
+[spack]
+symbol = " "
+
+[status]
+symbol = " "
+
+[sudo]
+symbol = " "
+
+[swift]
+symbol = " "
+
+[terraform]
+symbol = " "
+
+[vlang]
+symbol = " "
+
+[typst]
+symbol = " "
+
+[vagrant]
+symbol = " "
+
+[xmake]
+symbol = " "
+
+[zig]
+symbol = " "

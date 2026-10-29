@@ -2,6 +2,16 @@
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
+# fzf: fzf.fish's own defaults plus the gruber-darker-renaissance palette.
+# fzf-lua inherits this too, but passes its own --border, --height and colors.
+set -gx FZF_DEFAULT_OPTS (string join ' ' -- \
+    --cycle --layout=reverse --border=sharp --height=90% --info=inline-right \
+    --preview-window=wrap '--marker=*' \
+    --color=fg:#d2d2cc,bg:-1,hl:#efd45b,fg+:#ebebe6,bg+:#1e1e1e,hl+:#efd45b \
+    --color=info:#8c8c8c,prompt:#efd45b,pointer:#efd45b,marker:#8ac568 \
+    --color=spinner:#9e95c7,header:#9fb2d6,border:#555555,label:#8c8c8c \
+    --color=gutter:-1,separator:#555555,scrollbar:#555555,query:#d2d2cc)
+
 # Homebrew (Apple Silicon): what `brew shellenv fish` prints, inlined because
 # running it costs 20-30 ms on every shell start
 set -gx HOMEBREW_PREFIX /opt/homebrew

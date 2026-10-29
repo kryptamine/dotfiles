@@ -1,0 +1,3 @@
+# Take the colors from the terminal palette (gruber-darker-renaissance in
+# ghostty), so fzf previews match everything else
+--theme=ansi
