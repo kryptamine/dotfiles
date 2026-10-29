@@ -46,6 +46,15 @@ window-padding-color = extend
 window-save-state = always
 quit-after-last-window-closed = true
 resize-overlay = never
+# Dim the split that doesn't have focus
+unfocused-split-opacity = 0.85
+unfocused-split-fill = #000000
+
+# Dock icon in the palette: black screen, yellow ghost
+macos-icon = custom-style
+macos-icon-frame = chrome
+macos-icon-ghost-color = #efd45b
+macos-icon-screen-color = #000000,#1e1e1e
 
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 2
