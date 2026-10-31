@@ -47,7 +47,10 @@ error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
 
 # Nerd Font icons: `starship preset nerd-font-symbols`, minus the sections above
+# Toolchain modules get `style = "gray"`: the stock styles are bold and some are
+# off-palette 256 colors (package 208, php 147, terraform 105)
 [aws]
+style = "gray"
 symbol = " "
 
 [azure]
@@ -64,6 +67,7 @@ empty_symbol = "󰂎 "
 symbol = " "
 
 [bun]
+style = "gray"
 symbol = " "
 
 [c]
@@ -91,12 +95,14 @@ symbol = " "
 symbol = " "
 
 [deno]
+style = "gray"
 symbol = " "
 
 [direnv]
 symbol = " "
 
 [docker_context]
+style = "gray"
 symbol = " "
 
 [dotnet]
@@ -121,6 +127,7 @@ symbol = " "
 symbol = " "
 
 [gcloud]
+style = "gray"
 symbol = "󱇶 "
 
 [gleam]
@@ -130,6 +137,7 @@ symbol = " "
 tag_symbol = '  '
 
 [golang]
+style = "gray"
 symbol = " "
 
 [gradle]
@@ -154,6 +162,7 @@ symbol = " "
 ssh_symbol = " "
 
 [java]
+style = "gray"
 symbol = " "
 
 [jj_bookmark]
@@ -166,9 +175,11 @@ symbol = " "
 symbol = " "
 
 [kubernetes]
+style = "gray"
 symbol = "󱃾 "
 
 [lua]
+style = "gray"
 symbol = " "
 
 [maven]
@@ -196,6 +207,7 @@ symbol = " "
 symbol = " "
 
 [nodejs]
+style = "gray"
 symbol = " "
 
 [ocaml]
@@ -274,12 +286,14 @@ Windows = "󰍲 "
 Zorin = " "
 
 [package]
+style = "gray"
 symbol = "󰏗 "
 
 [perl]
 symbol = " "
 
 [php]
+style = "gray"
 symbol = " "
 
 [pijul_channel]
@@ -295,6 +309,7 @@ symbol = " "
 symbol = " "
 
 [python]
+style = "gray"
 symbol = " "
 
 [raku]
@@ -307,9 +322,11 @@ symbol = "󱍼 "
 symbol = "󰟔 "
 
 [ruby]
+style = "gray"
 symbol = " "
 
 [rust]
+style = "gray"
 symbol = "󱘗 "
 
 [scala]
@@ -337,6 +354,7 @@ symbol = " "
 symbol = " "
 
 [terraform]
+style = "gray"
 symbol = " "
 
 [vlang]
