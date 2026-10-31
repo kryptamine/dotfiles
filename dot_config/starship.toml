@@ -39,9 +39,7 @@ format = "([$all_status$ahead_behind]($style) )"
 style = "yellow"
 
 [cmd_duration]
-min_time = 2000
-format = "[$duration]($style) "
-style = "gray"
+disabled = true
 
 [character]
 success_symbol = "[❯](yellow)"
