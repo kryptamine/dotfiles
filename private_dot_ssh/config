@@ -1,7 +1,7 @@
 Host github.com
     HostName github.com
     User git
-    IdentityFile ~/.ssh/gh-enterprise
+    IdentityFile ~/.ssh/id_rsa
     IdentitiesOnly yes
 
 Host github.com-personal
