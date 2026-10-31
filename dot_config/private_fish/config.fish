@@ -12,6 +12,13 @@ set -gx FZF_DEFAULT_OPTS (string join ' ' -- \
     --color=spinner:#9e95c7,header:#9fb2d6,border:#555555,label:#8c8c8c \
     --color=gutter:-1,separator:#555555,scrollbar:#555555,query:#d2d2cc)
 
+# eza: size, user and date in the palette gray, so names stand out in `ll`
+set -gx EZA_COLORS 'sn=38;2;140;140;140:sb=38;2;140;140;140:uu=38;2;140;140;140:un=38;2;140;140;140:da=38;2;140;140;140'
+
+# man pages through bat, which takes the terminal palette (see bat/config)
+set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -gx MANROFFOPT -c
+
 # Homebrew (Apple Silicon): what `brew shellenv fish` prints, inlined because
 # running it costs 20-30 ms on every shell start
 set -gx HOMEBREW_PREFIX /opt/homebrew
