@@ -1,0 +1,12 @@
+{{- /* The GitHub key differs per laptop (personal id_rsa, work gh-enterprise), so it is a per-machine prompt. */ -}}
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile {{ .githubkey }}
+    IdentitiesOnly yes
+
+Host github.com-personal
+    HostName github.com
+    User git
+    IdentityFile {{ .githubkey }}
+    IdentitiesOnly yes
