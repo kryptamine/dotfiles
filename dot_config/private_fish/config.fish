@@ -12,6 +12,10 @@ set -gx FZF_DEFAULT_OPTS (string join ' ' -- \
     --color=spinner:#9e95c7,header:#9fb2d6,border:#555555,label:#8c8c8c \
     --color=gutter:-1,separator:#555555,scrollbar:#555555,query:#d2d2cc)
 
+# eza: colors come from theme.yml there. On macOS eza looks in
+# ~/Library/Application Support, not ~/.config, unless told where to look
+set -gx EZA_CONFIG_DIR ~/.config/eza
+
 # man pages through bat, which takes the terminal palette (see bat/config)
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx MANROFFOPT -c
