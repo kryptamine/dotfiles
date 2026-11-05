@@ -9,9 +9,9 @@
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RF
+	pager = delta
 [interactive]
-	diffFilter = diff-so-fancy --patch
+	diffFilter = delta --color-only
 [init]
 	defaultBranch = main
 [push]
@@ -48,7 +48,8 @@
 	autocorrect = prompt
 [column]
 	ui = auto
-# Colors from the gruber-darker-renaissance palette; diff-so-fancy reads them too
+# Colors from the gruber-darker-renaissance palette. git uses these itself
+# (status, --no-pager); delta below has its own set.
 [color "diff"]
 	meta = "#efd45b"
 	frag = "#9e95c7"
@@ -57,13 +58,36 @@
 	old = "#d64c4b"
 	new = "#8ac568"
 	whitespace = "#d64c4b" reverse
-[color "diff-highlight"]
-	oldNormal = "#d64c4b"
-	oldHighlight = "#f26063" "#3a1616"
-	newNormal = "#8ac568"
-	newHighlight = "#a6e384" "#1c3314"
 [color "status"]
 	added = "#8ac568"
 	changed = "#d64c4b"
 	untracked = "#cc8c3c"
 	branch = "#efd45b"
+[delta]
+	navigate = true
+	line-numbers = true
+	tabs = 4
+	# bat's ansi theme: syntax colors come from the terminal palette, like bat/config
+	syntax-theme = ansi
+	# Line backgrounds and inline emphasis mirror the nvim theme's DiffAdd,
+	# DiffDelete and Neogit inline groups
+	minus-style = syntax "#2a1516"
+	minus-emph-style = "#ebebe6" "#732727"
+	plus-style = syntax "#1b2e12"
+	plus-emph-style = "#ebebe6" "#476834"
+	commit-style = "#efd45b"
+	file-style = "#efd45b"
+	file-decoration-style = "#3a3a3a" ul
+	hunk-header-style = file line-number syntax
+	hunk-header-file-style = "#9e95c7"
+	hunk-header-line-number-style = "#9e95c7"
+	hunk-header-decoration-style = omit
+	line-numbers-minus-style = "#d64c4b"
+	line-numbers-plus-style = "#8ac568"
+	line-numbers-zero-style = "#555555"
+	line-numbers-left-style = "#3a3a3a"
+	line-numbers-right-style = "#3a3a3a"
+	whitespace-error-style = "#d64c4b" reverse
+	blame-palette = "#000000" "#101010" "#181818" "#1e1e1e"
+	merge-conflict-ours-diff-header-style = "#efd45b"
+	merge-conflict-theirs-diff-header-style = "#efd45b"

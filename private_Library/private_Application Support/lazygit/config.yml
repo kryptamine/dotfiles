@@ -25,7 +25,7 @@ git:
   parseEmoji: true
   diffRenderers:
     - colorArg: always
-      command: diff-so-fancy
+      command: delta --dark --paging=never
 quitOnTopLevelReturn: true
 os:
   # Inside Neovim's terminal, open files in the parent Neovim instead of a
