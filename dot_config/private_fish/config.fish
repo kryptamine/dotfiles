@@ -16,6 +16,21 @@ set -gx FZF_DEFAULT_OPTS (string join ' ' -- \
 # ~/Library/Application Support, not ~/.config, unless told where to look
 set -gx EZA_CONFIG_DIR ~/.config/eza
 
+# fzf.fish previews: directories through eza (theme.yml colors and icons),
+# diffs in git status/log search through delta (gitconfig colors)
+set -gx fzf_preview_dir_cmd eza --all --color=always --icons=always --group-directories-first
+set -gx fzf_diff_highlighter delta --paging=never --width=20
+
+# ripgrep colors live in a config file it only reads when pointed at it
+set -gx RIPGREP_CONFIG_PATH ~/.config/ripgrep/config
+
+# jq colors from the palette, matching nvim's JSON highlighting: null ash,
+# booleans yellow (keyword), numbers quartz, strings green, punctuation gray,
+# keys fg1 (@property). Order: null:false:true:numbers:strings:arrays:objects:keys
+set -gx JQ_COLORS (string join : -- \
+    '38;2;110;106;100' '38;2;239;212;91' '38;2;239;212;91' '38;2;150;162;156' \
+    '38;2;138;197;104' '38;2;140;140;140' '38;2;140;140;140' '38;2;235;235;230')
+
 # man pages through bat, which takes the terminal palette (see bat/config)
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx MANROFFOPT -c
@@ -42,6 +57,12 @@ fish_add_path -g \
     ~/.grok/bin \
     ~/.yarn/bin \
     ~/.local/share/nvim/mason/bin
+
+# LS_COLORS for fd, tree and others, from vivid/themes (mirrors eza's theme).
+# After the Homebrew PATH setup, which is where vivid lives
+if command -q vivid
+    set -gx LS_COLORS (vivid generate gruber-darker-renaissance 2>/dev/null)
+end
 
 # Go
 set -gx GOPATH $HOME/go

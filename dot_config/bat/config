@@ -1,3 +1,5 @@
 # Take the colors from the terminal palette (gruber-darker-renaissance in
 # ghostty), so fzf previews match everything else
 --theme=ansi
+# No grid or file size: line numbers, git changes and the file name are enough
+--style=numbers,changes,header-filename

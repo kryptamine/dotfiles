@@ -52,6 +52,21 @@ local options = {
 
 	fillchars = {
 		eob = " ",
+		-- Deleted lines in diff mode as a hatch instead of dashes
+		diff = "╱",
+		fold = " ",
+		foldopen = "",
+		foldclose = "",
+		foldsep = " ",
+	},
+
+	-- Show what's otherwise invisible: trailing spaces and non-breaking
+	-- spaces, in Whitespace (bg4). Tabs stay blank, expandtab is the norm.
+	list = true,
+	listchars = {
+		tab = "  ",
+		trail = "·",
+		nbsp = "␣",
 	},
 }
 

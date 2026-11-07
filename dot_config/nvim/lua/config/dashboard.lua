@@ -42,16 +42,17 @@ rrrrrrrrrlllllll
 rrrrrrrrrlllllll
 rrrrrrrrrlllllll]]
 
--- Midpoints of the gradients in the official mark.
+-- The official mark's blue / light green / green, mapped onto the
+-- gruber-darker-renaissance palette: niagara, green, green_muted.
 local part_hl = {
 	l = "DashboardLogoBlue",
 	d = "DashboardLogoLightGreen",
 	r = "DashboardLogoGreen",
 }
 local part_fg = {
-	DashboardLogoBlue = "#1385D0",
-	DashboardLogoLightGreen = "#66AC45",
-	DashboardLogoGreen = "#5A963B",
+	DashboardLogoBlue = "#9fb2d6",
+	DashboardLogoLightGreen = "#8ac568",
+	DashboardLogoGreen = "#476834",
 }
 
 local ns = vim.api.nvim_create_namespace("dashboard")
