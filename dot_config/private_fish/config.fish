@@ -24,6 +24,13 @@ set -gx fzf_diff_highlighter delta --paging=never --width=20
 # ripgrep colors live in a config file it only reads when pointed at it
 set -gx RIPGREP_CONFIG_PATH ~/.config/ripgrep/config
 
+# jq colors from the palette, matching nvim's JSON highlighting: null ash,
+# booleans yellow (keyword), numbers quartz, strings green, punctuation gray,
+# keys fg1 (@property). Order: null:false:true:numbers:strings:arrays:objects:keys
+set -gx JQ_COLORS (string join : -- \
+    '38;2;110;106;100' '38;2;239;212;91' '38;2;239;212;91' '38;2;150;162;156' \
+    '38;2;138;197;104' '38;2;140;140;140' '38;2;140;140;140' '38;2;235;235;230')
+
 # man pages through bat, which takes the terminal palette (see bat/config)
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx MANROFFOPT -c
