@@ -7,7 +7,7 @@ return {
 		lazy = false,
 		opts = {
 			title = "Find Files",
-			prompt = "🔎 ",
+			prompt = "❯ ",
 			layout = {
 				width = 0.5,
 				height = 0.6,
