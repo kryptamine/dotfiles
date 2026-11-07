@@ -16,6 +16,11 @@ set -gx FZF_DEFAULT_OPTS (string join ' ' -- \
 # ~/Library/Application Support, not ~/.config, unless told where to look
 set -gx EZA_CONFIG_DIR ~/.config/eza
 
+# fzf.fish previews: directories through eza (theme.yml colors and icons),
+# diffs in git status/log search through delta (gitconfig colors)
+set -gx fzf_preview_dir_cmd eza --all --color=always --icons=always --group-directories-first
+set -gx fzf_diff_highlighter delta --paging=never --width=20
+
 # man pages through bat, which takes the terminal palette (see bat/config)
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx MANROFFOPT -c
