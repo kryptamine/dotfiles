@@ -58,6 +58,12 @@ fish_add_path -g \
     ~/.yarn/bin \
     ~/.local/share/nvim/mason/bin
 
+# LS_COLORS for fd, tree and others, from vivid/themes (mirrors eza's theme).
+# After the Homebrew PATH setup, which is where vivid lives
+if command -q vivid
+    set -gx LS_COLORS (vivid generate gruber-darker-renaissance 2>/dev/null)
+end
+
 # Go
 set -gx GOPATH $HOME/go
 fish_add_path -g $GOPATH/bin
