@@ -34,9 +34,9 @@ style = "wisteria"
 [git_state]
 style = "brown"
 
+# Only the branch: per-file counts aren't worth the prompt space
 [git_status]
-format = "([$all_status$ahead_behind]($style) )"
-style = "yellow"
+disabled = true
 
 [cmd_duration]
 disabled = true
@@ -47,13 +47,14 @@ error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
 
 # Nerd Font icons: `starship preset nerd-font-symbols`, minus the sections above
-# Toolchain modules get `style = "gray"`: the stock styles are bold and some are
-# off-palette 256 colors (package 208, php 147, terraform 105)
+# Toolchain and environment modules all get `style = "gray"`: the stock styles
+# are bold and some are off-palette 256 colors (package 208, php 147, terraform 105)
 [aws]
 style = "gray"
 symbol = " "
 
 [azure]
+style = "gray"
 symbol = " "
 
 [battery]
@@ -64,6 +65,7 @@ unknown_symbol = "󰂑 "
 empty_symbol = "󰂎 "
 
 [buf]
+style = "gray"
 symbol = " "
 
 [bun]
@@ -71,27 +73,35 @@ style = "gray"
 symbol = " "
 
 [c]
+style = "gray"
 symbol = " "
 
 [cpp]
+style = "gray"
 symbol = " "
 
 [cmake]
+style = "gray"
 symbol = " "
 
 [cobol]
+style = "gray"
 symbol = " "
 
 [conda]
+style = "gray"
 symbol = " "
 
 [container]
+style = "gray"
 symbol = " "
 
 [crystal]
+style = "gray"
 symbol = " "
 
 [dart]
+style = "gray"
 symbol = " "
 
 [deno]
@@ -99,6 +109,7 @@ style = "gray"
 symbol = " "
 
 [direnv]
+style = "gray"
 symbol = " "
 
 [docker_context]
@@ -106,21 +117,27 @@ style = "gray"
 symbol = " "
 
 [dotnet]
+style = "gray"
 symbol = " "
 
 [elixir]
+style = "gray"
 symbol = " "
 
 [elm]
+style = "gray"
 symbol = " "
 
 [erlang]
+style = "gray"
 symbol = " "
 
 [fennel]
+style = "gray"
 symbol = " "
 
 [fortran]
+style = "gray"
 symbol = " "
 
 [fossil_branch]
@@ -131,6 +148,7 @@ style = "gray"
 symbol = "󱇶 "
 
 [gleam]
+style = "gray"
 symbol = " "
 
 [git_commit]
@@ -141,18 +159,23 @@ style = "gray"
 symbol = " "
 
 [gradle]
+style = "gray"
 symbol = " "
 
 [guix_shell]
+style = "gray"
 symbol = " "
 
 [haskell]
+style = "gray"
 symbol = " "
 
 [haxe]
+style = "gray"
 symbol = " "
 
 [helm]
+style = "gray"
 symbol = " "
 
 [hg_branch]
@@ -169,9 +192,11 @@ symbol = " "
 symbol = " "
 
 [julia]
+style = "gray"
 symbol = " "
 
 [kotlin]
+style = "gray"
 symbol = " "
 
 [kubernetes]
@@ -183,27 +208,33 @@ style = "gray"
 symbol = " "
 
 [maven]
+style = "gray"
 symbol = " "
 
 [memory_usage]
 symbol = "󰍛 "
 
 [meson]
+style = "gray"
 symbol = "󰔷 "
 
 [mojo]
+style = "gray"
 symbol = "󰈸 "
 
 [nats]
+style = "gray"
 symbol = " "
 
 [netns]
 symbol = "󰛳 "
 
 [nim]
+style = "gray"
 symbol = " "
 
 [nix_shell]
+style = "gray"
 symbol = " "
 
 [nodejs]
@@ -211,15 +242,19 @@ style = "gray"
 symbol = " "
 
 [ocaml]
+style = "gray"
 symbol = " "
 
 [odin]
+style = "gray"
 symbol = "󰟢 "
 
 [opa]
+style = "gray"
 symbol = " "
 
 [openstack]
+style = "gray"
 symbol = " "
 
 [os.symbols]
@@ -290,6 +325,7 @@ style = "gray"
 symbol = "󰏗 "
 
 [perl]
+style = "gray"
 symbol = " "
 
 [php]
@@ -300,12 +336,15 @@ symbol = " "
 symbol = " "
 
 [pixi]
+style = "gray"
 symbol = "󰏗 "
 
 [pulumi]
+style = "gray"
 symbol = " "
 
 [purescript]
+style = "gray"
 symbol = " "
 
 [python]
@@ -313,12 +352,15 @@ style = "gray"
 symbol = " "
 
 [raku]
+style = "gray"
 symbol = "󱖊 "
 
 [red]
+style = "gray"
 symbol = "󱍼 "
 
 [rlang]
+style = "gray"
 symbol = "󰟔 "
 
 [ruby]
@@ -330,18 +372,22 @@ style = "gray"
 symbol = "󱘗 "
 
 [scala]
+style = "gray"
 symbol = " "
 
 [shlvl]
 symbol = "󰹍 "
 
 [singularity]
+style = "gray"
 symbol = " "
 
 [solidity]
+style = "gray"
 symbol = " "
 
 [spack]
+style = "gray"
 symbol = " "
 
 [status]
@@ -351,6 +397,7 @@ symbol = " "
 symbol = " "
 
 [swift]
+style = "gray"
 symbol = " "
 
 [terraform]
@@ -358,16 +405,21 @@ style = "gray"
 symbol = " "
 
 [vlang]
+style = "gray"
 symbol = " "
 
 [typst]
+style = "gray"
 symbol = " "
 
 [vagrant]
+style = "gray"
 symbol = " "
 
 [xmake]
+style = "gray"
 symbol = " "
 
 [zig]
+style = "gray"
 symbol = " "
