@@ -28,6 +28,7 @@ font-feature = dlig
 font-feature = ss14
 # Keep ligatures intact under the cursor
 font-shaping-break = no-cursor
+adjust-cell-height = 10%
 adjust-icon-height = -50%
 adjust-box-thickness = 1
 adjust-underline-thickness = 1
