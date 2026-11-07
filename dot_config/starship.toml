@@ -12,7 +12,6 @@ palette = "gruber"
 disabled = true
 
 [palettes.gruber]
-fg = "#d2d2cc"
 gray = "#8c8c8c"
 yellow = "#efd45b"
 green = "#8ac568"
@@ -21,8 +20,12 @@ niagara = "#9fb2d6"
 wisteria = "#9e95c7"
 brown = "#cc8c3c"
 
+# Inside a repo the path starts at its root (truncate_to_repo, on by default):
+# the repo name in yellow, the subpath in niagara
 [directory]
 style = "niagara"
+repo_root_style = "yellow"
+before_repo_root_style = "gray"
 read_only = " 󰌾"
 read_only_style = "red"
 
