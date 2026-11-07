@@ -31,6 +31,12 @@ set -gx JQ_COLORS (string join : -- \
     '38;2;110;106;100' '38;2;239;212;91' '38;2;239;212;91' '38;2;150;162;156' \
     '38;2;138;197;104' '38;2;140;140;140' '38;2;140;140;140' '38;2;235;235;230')
 
+# less (the pager behind delta, git and gh): git's own -FRX defaults, which it
+# only adds when LESS is unset, plus palette colors for search matches (black
+# on yellow, like ghostty's search), errors and the status line. -X is dropped:
+# less 530+ quits on short output without it, and it breaks wheel scrolling
+set -gx LESS -FR --use-color -DSky -DEkr -DPy
+
 # man pages through bat, which takes the terminal palette (see bat/config)
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx MANROFFOPT -c

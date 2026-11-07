@@ -13,6 +13,10 @@ defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
 
 # No font smoothing: on Retina it only thickens glyphs
 defaults -currentHost write -g AppleFontSmoothing -int 0
+# Yellow accent and text highlight, matching the palette's #efd45b
+defaults write -g AppleAccentColor -int 2
+defaults write -g AppleHighlightColor -string "1.000000 0.937255 0.690196 Yellow"
+defaults write -g AppleShowScrollBars -string WhenScrolling
 
 # Disable Ctrl+Space / Ctrl+Opt+Space input source switching (Karabiner Shift taps do it)
 for id_mods in 60:262144 61:786432; do
