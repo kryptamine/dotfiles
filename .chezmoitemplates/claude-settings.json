@@ -62,7 +62,7 @@
     "enabled": false,
     "mode": "hold"
   },
-  "theme": "dark",
+  "theme": "custom:gruber-darker-renaissance",
   "editorMode": "normal",
   "agentPushNotifEnabled": true,
   "useAutoModeDuringPlan": true,
