@@ -16,7 +16,7 @@ shell-integration = fish
 shell-integration-features = no-cursor,sudo
 
 font-family = Iosevka Term Extended
-font-style = Medium Extended
+font-style = Extended
 font-style-italic = false
 font-style-bold-italic = false
 font-size = 21
