@@ -21,6 +21,9 @@ set -gx EZA_CONFIG_DIR ~/.config/eza
 set -gx fzf_preview_dir_cmd eza --all --color=always --icons=always --group-directories-first
 set -gx fzf_diff_highlighter delta --paging=never --width=20
 
+# ripgrep colors live in a config file it only reads when pointed at it
+set -gx RIPGREP_CONFIG_PATH ~/.config/ripgrep/config
+
 # man pages through bat, which takes the terminal palette (see bat/config)
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx MANROFFOPT -c
