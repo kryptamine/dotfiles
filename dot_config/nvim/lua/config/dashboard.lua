@@ -99,7 +99,13 @@ local function render(buf, win)
 	content[#content + 1] = ""
 	local caption_row = #content
 	local v = vim.version()
-	append_centered(content, ("v%d.%d.%d  ·  s last file"):format(v.major, v.minor, v.patch), width)
+	local caption = { ("v%d.%d.%d"):format(v.major, v.minor, v.patch), "s last file" }
+	-- lazy.nvim measures startup on UIEnter, after the dashboard is first drawn
+	local ms = require("lazy").stats().startuptime
+	if ms > 0 then
+		table.insert(caption, 2, ("%.0f ms"):format(ms))
+	end
+	append_centered(content, table.concat(caption, "  ·  "), width)
 
 	local lines = {}
 	for _ = 1, math.max(0, math.floor((height - #content) / 2)) do
@@ -157,6 +163,16 @@ local function open()
 		vim.api.nvim_set_hl(0, name, { fg = fg })
 	end
 	render(buf, win)
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "LazyVimStarted",
+		once = true,
+		callback = function()
+			local shown = vim.api.nvim_buf_is_valid(buf) and vim.fn.bufwinid(buf) or -1
+			if shown ~= -1 then
+				render(buf, shown)
+			end
+		end,
+	})
 
 	vim.api.nvim_create_autocmd({ "VimResized", "WinResized" }, {
 		group = vim.api.nvim_create_augroup("dashboard_resize", { clear = true }),
