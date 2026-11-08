@@ -99,7 +99,7 @@ local function render(buf, win)
 	content[#content + 1] = ""
 	local caption_row = #content
 	local v = vim.version()
-	append_centered(content, ("v%d.%d.%d  ·  s restore session"):format(v.major, v.minor, v.patch), width)
+	append_centered(content, ("v%d.%d.%d  ·  s last file"):format(v.major, v.minor, v.patch), width)
 
 	local lines = {}
 	for _ = 1, math.max(0, math.floor((height - #content) / 2)) do
@@ -171,9 +171,17 @@ local function open()
 		end,
 	})
 
+	-- The most recent file under cwd; the cursor position comes back from the
+	-- last-position autocmd
 	vim.keymap.set("n", "s", function()
-		require("persistence").load()
-	end, { buffer = buf, nowait = true, desc = "Restore Session" })
+		local cwd = vim.fn.getcwd() .. "/"
+		for _, file in ipairs(vim.v.oldfiles) do
+			if vim.startswith(file, cwd) and vim.fn.filereadable(file) == 1 then
+				return vim.cmd.edit(vim.fn.fnameescape(file))
+			end
+		end
+		vim.notify("No recent file in " .. cwd)
+	end, { buffer = buf, nowait = true, desc = "Open Last File" })
 	vim.keymap.set("n", "q", "<Cmd>qa<CR>", { buffer = buf, nowait = true, desc = "Quit" })
 end
 
