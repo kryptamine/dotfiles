@@ -37,6 +37,10 @@ set -gx JQ_COLORS (string join : -- \
 # less 530+ quits on short output without it, and it breaks wheel scrolling
 set -gx LESS -FR --use-color -DSky -DEkr -DPy
 
+# Markdown in gh (pr/issue view) and other glamour-based tools: the stock
+# dark style recolored with the palette
+set -gx GLAMOUR_STYLE ~/.config/glamour/gruber-darker-renaissance.json
+
 # man pages through bat, which takes the terminal palette (see bat/config)
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx MANROFFOPT -c
