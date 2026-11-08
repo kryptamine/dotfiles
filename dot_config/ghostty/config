@@ -18,9 +18,15 @@ shell-integration-features = no-cursor,sudo
 font-family = JetBrains Mono
 font-style = Regular
 font-style-italic = false
+# No bold face anywhere: tools that still ask for bold (lazygit borders,
+# fish pager, gh, brew) get regular, like everything themed in the palette
+font-style-bold = false
 font-style-bold-italic = false
 font-size = 20
-font-thicken = false
+# macOS font smoothing is off (see run_onchange_macos-defaults.sh), which
+# leaves JetBrains Mono thin on Retina; a light thicken brings the weight back
+font-thicken = true
+font-thicken-strength = 40
 font-synthetic-style = no-bold
 font-feature = zero
 # Keep ligatures intact under the cursor
@@ -41,6 +47,8 @@ cursor-style-blink = false
 macos-titlebar-style = hidden
 # No native frame: the only way to get squared window corners
 window-decoration = none
+# The shadow outlives the frame and draws a halo around the borderless window
+macos-window-shadow = false
 macos-option-as-alt = true
 window-colorspace = display-p3
 window-padding-x = 12
