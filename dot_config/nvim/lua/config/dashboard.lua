@@ -67,16 +67,16 @@ local function last_file()
 	end
 end
 
--- What the dashboard offers, as { key, label, detail?, action }. The cursor
--- position of the last file comes back from the last-position autocmd.
+-- What the dashboard offers, as { key, label, action }. The last file is
+-- labeled by its name; its cursor position comes back from the last-position
+-- autocmd.
 local function menu_items()
 	local items = {}
 	local file = last_file()
 	if file then
 		items[#items + 1] = {
 			key = "s",
-			label = "Last file",
-			detail = vim.fn.fnamemodify(file, ":."),
+			label = vim.fn.fnamemodify(file, ":t"),
 			action = function()
 				vim.cmd.edit(vim.fn.fnameescape(file))
 			end,
@@ -85,54 +85,38 @@ local function menu_items()
 	vim.list_extend(items, {
 		{
 			key = "f",
-			label = "Find file",
+			label = "find",
 			action = function()
 				require("fff").find_files()
 			end,
 		},
 		{
 			key = "g",
-			label = "Grep",
+			label = "grep",
 			action = function()
 				require("fff").live_grep()
 			end,
 		},
-		{ key = "q", label = "Quit", action = "<Cmd>qa<CR>" },
+		{ key = "q", label = "quit", action = "<Cmd>qa<CR>" },
 	})
 	return items
 end
 
--- Appends the menu to `lines` as one left-aligned block centered as a whole:
--- key, label, then the dimmed detail cut from the left to fit the window.
+-- Appends the menu to `lines` as one dimmed, centered row of "key label"
+-- hints with the keys highlighted.
 local function append_menu(lines, items, width, marks)
-	local gap = "   "
-	local label_w = 0
+	local parts = {}
 	for _, item in ipairs(items) do
-		label_w = math.max(label_w, #item.label)
+		parts[#parts + 1] = item.key .. " " .. item.label
 	end
-	local rows, block_w = {}, 0
-	for _, item in ipairs(items) do
-		local head = item.key .. gap .. item.label
-		local detail = item.detail
-		if detail then
-			head = head .. string.rep(" ", label_w - #item.label) .. gap
-			local room = width - 4 - #head
-			if vim.fn.strchars(detail) > room then
-				detail = room > 8 and "…" .. vim.fn.strcharpart(detail, vim.fn.strchars(detail) - room + 1) or nil
-			end
-		end
-		rows[#rows + 1] = { head = head, detail = detail or "" }
-		block_w = math.max(block_w, #head + vim.fn.strdisplaywidth(detail or ""))
-	end
-	local pad = string.rep(" ", math.max(0, math.floor((width - block_w) / 2)))
-	for _, row in ipairs(rows) do
-		lines[#lines + 1] = pad .. row.head .. row.detail
-		local r, col = #lines - 1, #pad
+	local row = table.concat(parts, "   ")
+	local pad = string.rep(" ", math.max(0, math.floor((width - vim.fn.strdisplaywidth(row)) / 2)))
+	lines[#lines + 1] = pad .. row
+	local r, col = #lines - 1, #pad
+	for _, part in ipairs(parts) do
 		marks[#marks + 1] = { r, col, col + 1, "DashboardKey" }
-		if row.detail ~= "" then
-			local start = col + #row.head
-			marks[#marks + 1] = { r, start, start + #row.detail, "Comment" }
-		end
+		marks[#marks + 1] = { r, col + 1, col + #part, "Comment" }
+		col = col + #part + 3
 	end
 end
 
