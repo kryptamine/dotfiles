@@ -67,17 +67,14 @@ local function last_file()
 	end
 end
 
--- What the dashboard offers, as { key, icon, label, action }. "restore" opens
--- the last file; its cursor position comes back from the last-position
--- autocmd. Icons are Nerd Font glyphs (md-restore, md-file_search_outline,
--- md-text_search, md-exit_to_app).
+-- What the dashboard offers, as { key, label, action }. "restore" opens the
+-- last file; its cursor position comes back from the last-position autocmd.
 local function menu_items()
 	local items = {}
 	local file = last_file()
 	if file then
 		items[#items + 1] = {
 			key = "s",
-			icon = "\u{f099b}",
 			label = "restore",
 			action = function()
 				vim.cmd.edit(vim.fn.fnameescape(file))
@@ -87,7 +84,6 @@ local function menu_items()
 	vim.list_extend(items, {
 		{
 			key = "f",
-			icon = "\u{f0c7d}",
 			label = "find",
 			action = function()
 				require("fff").find_files()
@@ -95,23 +91,22 @@ local function menu_items()
 		},
 		{
 			key = "g",
-			icon = "\u{f13b8}",
 			label = "grep",
 			action = function()
 				require("fff").live_grep()
 			end,
 		},
-		{ key = "q", icon = "\u{f0206}", label = "quit", action = "<Cmd>qa<CR>" },
+		{ key = "q", label = "quit", action = "<Cmd>qa<CR>" },
 	})
 	return items
 end
 
--- Appends the menu to `lines` as one dimmed, centered row of "key icon label"
+-- Appends the menu to `lines` as one dimmed, centered row of "key label"
 -- hints with the keys highlighted.
 local function append_menu(lines, items, width, marks)
 	local parts = {}
 	for _, item in ipairs(items) do
-		parts[#parts + 1] = item.key .. " " .. item.icon .. " " .. item.label
+		parts[#parts + 1] = item.key .. " " .. item.label
 	end
 	local row = table.concat(parts, "   ")
 	local pad = string.rep(" ", math.max(0, math.floor((width - vim.fn.strdisplaywidth(row)) / 2)))
