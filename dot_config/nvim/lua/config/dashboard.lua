@@ -57,6 +57,68 @@ local part_fg = {
 
 local ns = vim.api.nvim_create_namespace("dashboard")
 
+-- The most recent file under cwd, or nil
+local function last_file()
+	local cwd = vim.fn.getcwd() .. "/"
+	for _, file in ipairs(vim.v.oldfiles) do
+		if vim.startswith(file, cwd) and vim.fn.filereadable(file) == 1 then
+			return file
+		end
+	end
+end
+
+-- What the dashboard offers, as { key, label, action }. "restore" opens the
+-- last file; its cursor position comes back from the last-position autocmd.
+local function menu_items()
+	local items = {}
+	local file = last_file()
+	if file then
+		items[#items + 1] = {
+			key = "s",
+			label = "restore",
+			action = function()
+				vim.cmd.edit(vim.fn.fnameescape(file))
+			end,
+		}
+	end
+	vim.list_extend(items, {
+		{
+			key = "f",
+			label = "find",
+			action = function()
+				require("fff").find_files()
+			end,
+		},
+		{
+			key = "g",
+			label = "grep",
+			action = function()
+				require("fff").live_grep()
+			end,
+		},
+		{ key = "q", label = "quit", action = "<Cmd>qa<CR>" },
+	})
+	return items
+end
+
+-- Appends the menu to `lines` as one dimmed, centered row of "key label"
+-- hints with the keys highlighted.
+local function append_menu(lines, items, width, marks)
+	local parts = {}
+	for _, item in ipairs(items) do
+		parts[#parts + 1] = item.key .. " " .. item.label
+	end
+	local row = table.concat(parts, "   ")
+	local pad = string.rep(" ", math.max(0, math.floor((width - vim.fn.strdisplaywidth(row)) / 2)))
+	lines[#lines + 1] = pad .. row
+	local r, col = #lines - 1, #pad
+	for _, part in ipairs(parts) do
+		marks[#marks + 1] = { r, col, col + 1, "DashboardKey" }
+		marks[#marks + 1] = { r, col + 1, col + #part, "Comment" }
+		col = col + #part + 3
+	end
+end
+
 -- Appends `block` to `lines`, centered on what is actually drawn: blank
 -- padding around the art would otherwise count towards its width and push
 -- the picture off to one side. With a `mask`, also collects into `marks` the
@@ -88,7 +150,7 @@ local function append_centered(lines, block, width, mask, marks)
 	end
 end
 
-local function render(buf, win)
+local function render(buf, win, items)
 	local width = vim.api.nvim_win_get_width(win)
 	local height = vim.api.nvim_win_get_height(win)
 
@@ -97,9 +159,17 @@ local function render(buf, win)
 	content[#content + 1] = ""
 	append_centered(content, wordmark, width, wordmark_mask, marks)
 	content[#content + 1] = ""
+	append_menu(content, items, width, marks)
+	content[#content + 1] = ""
 	local caption_row = #content
 	local v = vim.version()
-	append_centered(content, ("v%d.%d.%d  ·  s last file"):format(v.major, v.minor, v.patch), width)
+	local caption = { ("v%d.%d.%d"):format(v.major, v.minor, v.patch) }
+	-- lazy.nvim measures startup on UIEnter, after the dashboard is first drawn
+	local ms = require("lazy").stats().startuptime
+	if ms > 0 then
+		caption[#caption + 1] = ("%.0f ms"):format(ms)
+	end
+	append_centered(content, table.concat(caption, "  ·  "), width)
 
 	local lines = {}
 	for _ = 1, math.max(0, math.floor((height - #content) / 2)) do
@@ -156,7 +226,19 @@ local function open()
 	for name, fg in pairs(part_fg) do
 		vim.api.nvim_set_hl(0, name, { fg = fg })
 	end
-	render(buf, win)
+	vim.api.nvim_set_hl(0, "DashboardKey", { fg = part_fg.DashboardLogoLightGreen })
+	local items = menu_items()
+	render(buf, win, items)
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "LazyVimStarted",
+		once = true,
+		callback = function()
+			local shown = vim.api.nvim_buf_is_valid(buf) and vim.fn.bufwinid(buf) or -1
+			if shown ~= -1 then
+				render(buf, shown, items)
+			end
+		end,
+	})
 
 	vim.api.nvim_create_autocmd({ "VimResized", "WinResized" }, {
 		group = vim.api.nvim_create_augroup("dashboard_resize", { clear = true }),
@@ -166,23 +248,14 @@ local function open()
 			end
 			local shown = vim.fn.bufwinid(buf)
 			if shown ~= -1 then
-				render(buf, shown)
+				render(buf, shown, items)
 			end
 		end,
 	})
 
-	-- The most recent file under cwd; the cursor position comes back from the
-	-- last-position autocmd
-	vim.keymap.set("n", "s", function()
-		local cwd = vim.fn.getcwd() .. "/"
-		for _, file in ipairs(vim.v.oldfiles) do
-			if vim.startswith(file, cwd) and vim.fn.filereadable(file) == 1 then
-				return vim.cmd.edit(vim.fn.fnameescape(file))
-			end
-		end
-		vim.notify("No recent file in " .. cwd)
-	end, { buffer = buf, nowait = true, desc = "Open Last File" })
-	vim.keymap.set("n", "q", "<Cmd>qa<CR>", { buffer = buf, nowait = true, desc = "Quit" })
+	for _, item in ipairs(items) do
+		vim.keymap.set("n", item.key, item.action, { buffer = buf, nowait = true, desc = item.label })
+	end
 end
 
 vim.api.nvim_create_autocmd("StdinReadPre", {
