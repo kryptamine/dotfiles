@@ -127,7 +127,7 @@ end
 
 vim.keymap.set({ "n", "t" }, "<c-t>", toggle_shell, { desc = "Toggle Terminal" })
 
-vim.keymap.set("n", "<leader>gg", function()
+vim.keymap.set("n", "<leader>lg", function()
 	spawn({ "lazygit" })
 end, { desc = "Lazygit" })
 
