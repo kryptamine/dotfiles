@@ -1,0 +1,63 @@
+;; kanata config. Runs as a root LaunchDaemon from a root-owned copy in
+;; /etc/kanata, see run_onchange_after_install-kanata.sh.tmpl. Input source
+;; switches go out as push-msg to input-source-agent.swift.
+
+(defcfg
+  process-unmapped-keys yes
+  ;; Hold S and ; together for Option+Control
+  concurrent-tap-hold yes
+)
+
+(defsrc
+  tab caps s l ; lsft rsft lalt h j k
+)
+
+(deflayer base
+  @tab @cap @s @l @scln @lsft @rsft @opt _ _ _
+)
+
+;; Option + hjkl sends plain arrows; Shift still passes through for selection
+(deflayer nav
+  _ _ _ @rght _ _ _ _ @left @down @up
+)
+
+(defhands
+  (left grv 1 2 3 4 5 q w e r t a s d f g z x c v b)
+  (right 6 7 8 9 0 - = y u i o p [ ] \ h j k l ; ' n m , . /))
+
+(defalias
+  opt (multi lalt (layer-while-held nav))
+  ctl lctl
+
+  ;; Caps: tap Esc, hold Control. Tab: tap Tab, hold Option.
+  cap (tap-hold-press 200 200 esc @ctl (require-prior-idle 0))
+  tab (tap-hold-press 200 200 tab @opt (require-prior-idle 0))
+
+  ;; Home row mods: hold only on an opposite-hand key that is released while
+  ;; the mod is still down, never mid-word (prior idle), and on a long hold.
+  s (tap-hold-opposite-hand-release 200 s @opt
+    (timeout hold) (neutral-keys spc) (neutral tap) (unknown-hand tap)
+    (require-prior-idle 150))
+  l (tap-hold-opposite-hand-release 200 l @opt
+    (timeout hold) (neutral-keys spc) (neutral tap) (unknown-hand tap)
+    (require-prior-idle 150))
+  scln (tap-hold-opposite-hand-release 200 ; @ctl
+    (timeout hold) (neutral-keys spc) (neutral tap) (unknown-hand tap)
+    (require-prior-idle 150))
+
+  ;; Tap left Shift for English, right Shift for Russian
+  lsft (tap-hold-press 0 300 (push-msg com.apple.keylayout.ABC) lsft (require-prior-idle 0))
+  rsft (tap-hold-press 0 300 (push-msg com.apple.keylayout.RussianWin) rsft (require-prior-idle 0))
+
+  left (unmod (lalt ralt) left)
+  down (unmod (lalt ralt) down)
+  up (unmod (lalt ralt) up)
+  rght (unmod (lalt ralt) rght)
+)
+
+(defoverrides
+  (lctl m) (ret)
+  (lctl h) (bspc)
+  (lctl w) (lalt bspc)
+  (lctl u) (lmet bspc)
+)
