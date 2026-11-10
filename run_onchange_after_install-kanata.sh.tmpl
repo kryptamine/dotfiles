@@ -1,9 +1,11 @@
 #!/bin/bash
 # Installs kanata, the Karabiner VirtualHIDDevice driver it outputs through,
-# and root LaunchDaemons for both. Rerun by chezmoi when the config or a
+# and root LaunchDaemons for both, plus the user LaunchAgent that switches
+# input sources for kanata. Rerun by chezmoi when the config, the agent or a
 # pinned version changes. Upgrade kanata and the driver together: each kanata
 # release supports exactly one driver version.
 # kanata.kbd hash: {{ include "dot_config/kanata/kanata.kbd" | sha256sum }}
+# input-source-agent.swift hash: {{ include "dot_config/kanata/input-source-agent.swift" | sha256sum }}
 set -euo pipefail
 
 kanata_version=1.12.0
@@ -18,6 +20,9 @@ driver_version=6.2.0
 driver_sha=9e8c46239f0748161241e42444857901224e5c82f5b58a1731df4c70bf0736a8
 
 config_src="{{ .chezmoi.sourceDir }}/dot_config/kanata/kanata.kbd"
+agent_src="{{ .chezmoi.sourceDir }}/dot_config/kanata/input-source-agent.swift"
+# Must match the port in input-source-agent.swift
+kanata_addr=127.0.0.1:5829
 manager=/Applications/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager
 vhid_daemon="/Library/Application Support/org.pqrs/Karabiner-DriverKit-VirtualHIDDevice/Applications/Karabiner-VirtualHIDDevice-Daemon.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Daemon"
 
@@ -49,24 +54,28 @@ if [ "$(/usr/local/bin/kanata --version 2>/dev/null)" != "kanata $kanata_version
   download "https://github.com/jtroo/kanata/releases/download/v$kanata_version/macos-binaries-$kanata_arch.zip" \
     "$kanata_sha" "$tmp/kanata.zip"
   unzip -q "$tmp/kanata.zip" -d "$tmp/kanata"
-  # The cmd_allowed build is needed for the macism calls in the config.
   # Root-owned, since a root daemon runs it.
   sudo install -d -o root -g wheel /usr/local/bin
-  sudo install -o root -g wheel -m 755 "$tmp/kanata/kanata_macos_cmd_allowed_$kanata_arch" /usr/local/bin/kanata
+  sudo install -o root -g wheel -m 755 "$tmp/kanata/kanata_macos_$kanata_arch" /usr/local/bin/kanata
 fi
 
-# The daemon reads a root-owned copy: the config can run commands as root
-# through cmd, so it must not be writable by the user.
+# The root daemon reads a root-owned copy, so editing the user's file can't
+# change what root runs.
 /usr/local/bin/kanata --check --cfg "$config_src" >/dev/null
 sudo install -d -o root -g wheel /etc/kanata
 sudo install -o root -g wheel -m 644 "$config_src" /etc/kanata/kanata.kbd
 
-# install_daemon LABEL KEEPALIVE PROGRAM [ARGS...]
-install_daemon() {
-  local label=$1 keepalive=$2 plist="/Library/LaunchDaemons/$1.plist" args=""
-  shift 2
+agent=$HOME/.local/bin/kanata-input-source-agent
+mkdir -p "$(dirname "$agent")"
+swiftc -O -o "$tmp/agent" "$agent_src"
+mv "$tmp/agent" "$agent"
+
+# plist LABEL KEEPALIVE LOG PROGRAM [ARGS...]
+plist() {
+  local label=$1 keepalive=$2 log=$3 args=""
+  shift 3
   for arg in "$@"; do args+="<string>$arg</string>"; done
-  sudo tee "$plist" >/dev/null <<EOF
+  cat <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -75,26 +84,45 @@ install_daemon() {
   <key>ProgramArguments</key><array>$args</array>
   <key>RunAtLoad</key><true/>
   <key>KeepAlive</key>$keepalive
-  <key>StandardOutPath</key><string>/var/log/$label.log</string>
-  <key>StandardErrorPath</key><string>/var/log/$label.log</string>
+  <key>StandardOutPath</key><string>$log</string>
+  <key>StandardErrorPath</key><string>$log</string>
 </dict>
 </plist>
 EOF
-  sudo chown root:wheel "$plist"
-  sudo chmod 644 "$plist"
-  if sudo launchctl print "system/$label" >/dev/null 2>&1; then
-    sudo launchctl bootout "system/$label" || true
+}
+
+# load DOMAIN PLIST [sudo]: (re)starts the job from PLIST in DOMAIN
+load() {
+  local domain=$1 file=$2 label
+  shift 2
+  label=$(basename "$file" .plist)
+  if "$@" launchctl print "$domain/$label" >/dev/null 2>&1; then
+    "$@" launchctl bootout "$domain/$label" || true
   fi
   # bootstrap right after bootout can fail while the old job is still exiting
   for _ in 1 2 3 4 5; do
-    sudo launchctl bootstrap system "$plist" 2>/dev/null && return
+    "$@" launchctl bootstrap "$domain" "$file" 2>/dev/null && return
     sleep 1
   done
-  sudo launchctl bootstrap system "$plist"
+  "$@" launchctl bootstrap "$domain" "$file"
+}
+
+# install_daemon LABEL KEEPALIVE PROGRAM [ARGS...]
+install_daemon() {
+  local file="/Library/LaunchDaemons/$1.plist"
+  plist "$1" "$2" "/var/log/$1.log" "${@:3}" | sudo tee "$file" >/dev/null
+  sudo chown root:wheel "$file"
+  sudo chmod 644 "$file"
+  load system "$file" sudo
 }
 
 install_daemon org.pqrs.Karabiner-VirtualHIDDevice-Daemon "<true/>" "$vhid_daemon"
 install_daemon dev.kanata.kanata "<dict><key>SuccessfulExit</key><false/></dict>" \
-  /usr/local/bin/kanata --cfg /etc/kanata/kanata.kbd
+  /usr/local/bin/kanata --cfg /etc/kanata/kanata.kbd --port "$kanata_addr"
+
+agent_plist=$HOME/Library/LaunchAgents/dev.kanata.input-source-agent.plist
+mkdir -p "$(dirname "$agent_plist")"
+plist dev.kanata.input-source-agent "<true/>" "$HOME/Library/Logs/kanata-input-source-agent.log" "$agent" >"$agent_plist"
+load "gui/$(id -u)" "$agent_plist"
 
 echo "kanata: if keys don't remap, allow /usr/local/bin/kanata in System Settings > Privacy & Security > Input Monitoring and Accessibility (log: /var/log/dev.kanata.kanata.log), then: sudo launchctl kickstart -k system/dev.kanata.kanata"

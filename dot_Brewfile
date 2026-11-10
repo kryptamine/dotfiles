@@ -1,5 +1,4 @@
 tap "hashicorp/tap"
-tap "laishulu/homebrew"
 brew "age"
 brew "ansible-lint"
 brew "ast-grep"
@@ -23,7 +22,6 @@ brew "go"
 brew "herdr"
 brew "jq"
 brew "lazygit"
-brew "laishulu/homebrew/macism", trusted: true
 brew "lua"
 brew "luarocks"
 brew "n"

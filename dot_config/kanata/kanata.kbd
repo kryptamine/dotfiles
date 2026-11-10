@@ -1,10 +1,9 @@
 ;; kanata config. Runs as a root LaunchDaemon from a root-owned copy in
-;; /etc/kanata, see run_onchange_after_install-kanata.sh.tmpl.
+;; /etc/kanata, see run_onchange_after_install-kanata.sh.tmpl. Input source
+;; switches go out as push-msg to input-source-agent.swift.
 
 (defcfg
   process-unmapped-keys yes
-  ;; cmd runs macism to switch input sources on Shift taps
-  danger-enable-cmd yes
   ;; Hold S and ; together for Option+Control
   concurrent-tap-hold yes
 )
@@ -25,12 +24,6 @@
 (defhands
   (left grv 1 2 3 4 5 q w e r t a s d f g z x c v b)
   (right 6 7 8 9 0 - = y u i o p [ ] \ h j k l ; ' n m , . /))
-
-(defvar
-  ;; kanata runs as root; macism has to run in the logged-in user's session
-  switch-en "u=$(stat -f %Su /dev/console); launchctl asuser $(id -u $u) sudo -u $u /opt/homebrew/bin/macism com.apple.keylayout.ABC"
-  switch-ru "u=$(stat -f %Su /dev/console); launchctl asuser $(id -u $u) sudo -u $u /opt/homebrew/bin/macism com.apple.keylayout.RussianWin"
-)
 
 (defalias
   opt (multi lalt (layer-while-held nav))
@@ -53,8 +46,8 @@
     (require-prior-idle 150))
 
   ;; Tap left Shift for English, right Shift for Russian
-  lsft (tap-hold-press 0 300 (cmd /bin/sh -c $switch-en) lsft (require-prior-idle 0))
-  rsft (tap-hold-press 0 300 (cmd /bin/sh -c $switch-ru) rsft (require-prior-idle 0))
+  lsft (tap-hold-press 0 300 (push-msg com.apple.keylayout.ABC) lsft (require-prior-idle 0))
+  rsft (tap-hold-press 0 300 (push-msg com.apple.keylayout.RussianWin) rsft (require-prior-idle 0))
 
   left (unmod (lalt ralt) left)
   down (unmod (lalt ralt) down)
