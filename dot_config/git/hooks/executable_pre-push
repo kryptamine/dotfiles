@@ -6,14 +6,11 @@ remote="$1"
 zero=$(git hash-object --stdin </dev/null | tr '0-9a-f' '0')
 status=0
 
-while read -r local_ref local_sha _ remote_sha; do
+while read -r local_ref local_sha _ _; do
 	[ "$local_sha" = "$zero" ] && continue # branch deletion
-	# A remote tip missing locally (a force push) falls back to every remote
-	if [ "$remote_sha" = "$zero" ] || ! git cat-file -e "$remote_sha^{commit}" 2>/dev/null; then
-		range="$local_sha --not --remotes=$remote"
-	else
-		range="$remote_sha..$local_sha"
-	fi
+	# Not remote_sha..local_sha: after a rebase that range holds the base's
+	# commits, which are already on the remote.
+	range="$local_sha --not --remotes=$remote"
 	# shellcheck disable=SC2086
 	if ! shas=$(git rev-list $range); then
 		echo "pre-push: cannot list commits for $local_ref" >&2
