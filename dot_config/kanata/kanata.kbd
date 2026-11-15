@@ -9,16 +9,17 @@
 )
 
 (defsrc
-  caps s l ; lsft rsft lalt h j k
+  caps s l ; lsft rsft lalt h j k b w
 )
 
 (deflayer base
-  @cap @s @l @scln @lsft @rsft @opt _ _ _
+  @cap @s @l @scln @lsft @rsft @opt _ _ _ _ _
 )
 
-;; Option + hjkl sends plain arrows; Shift still passes through for selection
+;; Option + hjkl sends plain arrows, Option + b/w keeps Option for word jumps;
+;; Shift still passes through for selection
 (deflayer nav
-  _ _ @rght _ _ _ _ @left @down @up
+  _ _ @rght _ _ _ _ @left @down @up left rght
 )
 
 (defhands
