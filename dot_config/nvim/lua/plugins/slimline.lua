@@ -24,11 +24,9 @@ return {
 			configs = {
 				path = {
 					trunc_width = 40,
-					directory = false,
-					truncate = {
-						chars = 1,
-						full_dirs = 3,
-					},
+					-- Full dir relative to cwd (project root), untruncated
+					directory = true,
+					truncate = false,
 				},
 			},
 		},

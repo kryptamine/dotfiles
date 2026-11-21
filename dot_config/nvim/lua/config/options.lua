@@ -76,6 +76,8 @@ end
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+-- The mail ftplugin maps <LocalLeader>q to quoting, shadowing <leader>q.
+vim.g.no_mail_maps = 1
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
