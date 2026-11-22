@@ -30,9 +30,14 @@ done
 osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
 osascript -e 'tell application "System Events" to tell dock preferences to set autohide menu bar to true'
 
-# Dock: hidden, small, on the left, no recent apps, minimize into the app icon
+# Dock: effectively off (can't be disabled, it also runs Mission Control and
+# Spaces), so hide it behind a huge reveal delay; tiny, only running apps,
+# on the left, no recent apps, no launch bounce, minimize into the app icon
 defaults write com.apple.dock autohide -bool true
-defaults write com.apple.dock tilesize -int 37
+defaults write com.apple.dock autohide-delay -float 1000
+defaults write com.apple.dock launchanim -bool false
+defaults write com.apple.dock static-only -bool true
+defaults write com.apple.dock tilesize -int 16
 defaults write com.apple.dock orientation -string left
 defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock minimize-to-application -bool true
