@@ -10,16 +10,26 @@
 
 (defsrc
   caps s l ; lsft rsft lalt h j k b w
+  fn f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 left down up rght bspc
 )
 
 (deflayer base
   @cap @s @l @scln @lsft @rsft @opt _ _ _ _ _
+  @fn _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 )
 
 ;; Option + hjkl sends plain arrows, Option + b/w keeps Option for word jumps;
 ;; Shift still passes through for selection
 (deflayer nav
   _ _ @rght _ _ _ _ @left @down @up left rght
+  _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+)
+
+;; The built-in keyboard's fn table lives in Apple's driver, which kanata
+;; bypasses, so fn + F-row and fn + arrows are rebuilt here
+(deflayer fnl
+  _ _ _ _ _ _ _ _ _ _ _ _
+  _ brdn brup _ _ _ _ prev pp next mute vold volu home pgdn pgup end del
 )
 
 (defhands
@@ -29,6 +39,7 @@
 (defalias
   opt (multi lalt (layer-while-held nav))
   ctl lctl
+  fn (multi fn (layer-while-held fnl))
 
   ;; Caps: tap Esc, hold Control.
   cap (tap-hold-press 200 200 esc @ctl (require-prior-idle 0))
