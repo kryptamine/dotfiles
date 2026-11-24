@@ -4,10 +4,14 @@ set -gx VISUAL nvim
 
 # fzf: fzf.fish's own defaults plus the gruber-darker-renaissance palette.
 # Pointer and marker are the same bar gitsigns draws in nvim.
+# Same shape as the fzf-lua picker: a rule under the query, the whole current
+# line highlighted, sharp preview border. Not --style=full: its list border
+# would nest inside fzf-lua's own float.
 # fzf-lua inherits this too, but passes its own --border, --height and colors.
 set -gx FZF_DEFAULT_OPTS (string join ' ' -- \
     --cycle --layout=reverse --border=sharp --height=90% --info=inline-right \
-    --preview-window=wrap '--pointer=▌' '--marker=▌' \
+    --input-border=bottom --highlight-line \
+    --preview-window=wrap,border-sharp '--pointer=▌' '--marker=▌' \
     --color=fg:#d2d2cc,bg:-1,hl:#efd45b,fg+:#ebebe6,bg+:#1e1e1e,hl+:#efd45b \
     --color=info:#8c8c8c,prompt:#efd45b,pointer:#efd45b,marker:#8ac568 \
     --color=spinner:#9e95c7,header:#9fb2d6,border:#555555,label:#8c8c8c \
@@ -132,6 +136,7 @@ if status is-interactive
         test $tool = starship; and set flags --print-full-init
         _source_cached $tool-init (path resolve $bin) _tool_init_script $bin $flags
     end
+
 end
 functions -e _source_cached _ls_colors_script _theme_script _tool_init_script
 
