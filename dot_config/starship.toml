@@ -5,6 +5,8 @@ command_timeout = 1000
 
 # The stock module set on one line
 add_newline = false
+# Slow commands report their time on the right; transient prompts drop it
+right_format = "$cmd_duration"
 # Colors from gruber-darker-renaissance, the same palette as ghostty and nvim
 palette = "gruber"
 
@@ -42,7 +44,9 @@ style = "brown"
 disabled = true
 
 [cmd_duration]
-disabled = true
+min_time = 3000
+format = "[$duration]($style)"
+style = "gray"
 
 [character]
 success_symbol = "[❯](yellow)"

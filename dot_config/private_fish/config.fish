@@ -137,6 +137,12 @@ if status is-interactive
         _source_cached $tool-init (path resolve $bin) _tool_init_script $bin $flags
     end
 
+    # Transient prompt (fish 4.1+): once a command runs, its prompt collapses
+    # to the bare ❯, keeping scrollback down to the commands themselves
+    set -g fish_transient_prompt 1
+    function starship_transient_prompt_func
+        starship module character $argv
+    end
 end
 functions -e _source_cached _ls_colors_script _theme_script _tool_init_script
 
