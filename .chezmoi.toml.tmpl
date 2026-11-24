@@ -2,6 +2,7 @@
 {{- $email := promptStringOnce . "email" "Git email" -}}
 {{- $signingkey := promptStringOnce . "signingkey" "SSH public key for signing commits" "~/.ssh/id_rsa.pub" -}}
 {{- $githubkey := promptStringOnce . "githubkey" "SSH private key for github.com" "~/.ssh/id_rsa" -}}
+{{- $icloud := promptStringOnce . "icloud" "iCloud email for postal (empty to skip)" "" -}}
 mode = "symlink"
 
 [data]
@@ -9,3 +10,4 @@ mode = "symlink"
     email = {{ $email | quote }}
     signingkey = {{ $signingkey | quote }}
     githubkey = {{ $githubkey | quote }}
+    icloud = {{ $icloud | quote }}

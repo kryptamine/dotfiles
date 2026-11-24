@@ -1,0 +1,16 @@
+email = {{ .email | quote }}
+name = {{ .name | quote }}
+icons = "nerd"
+signature = """
+Best regards,
+{{ .name }}"""
+notify = "always"
+{{- if .icloud }}
+
+[[account]]
+email = {{ .icloud | quote }}
+provider = "icloud"
+signature = """
+Best regards,
+{{ .name }}"""
+{{- end }}
