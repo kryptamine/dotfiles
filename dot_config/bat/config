@@ -1,5 +1,5 @@
-# Take the colors from the terminal palette (gruber-darker-renaissance in
-# ghostty), so fzf previews match everything else
---theme=ansi
+# Same scope-to-color mapping as the nvim theme (themes/), instead of the
+# 16-color ansi theme. delta reads it from bat's cache too.
+--theme=gruber-darker-renaissance
 # No grid or file size: line numbers, git changes and the file name are enough
 --style=numbers,changes,header-filename
