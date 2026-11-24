@@ -15,7 +15,9 @@ shell-integration = fish
 # shell has to be the one setting window/tab titles.
 shell-integration-features = no-cursor,sudo
 
-font-family = JetBrains Mono
+# Monaspace Neon: texture healing (calt) evens out the spacing of narrow and
+# wide letters. Monaspace Argon is the humanist sibling, a one-word swap.
+font-family = Monaspace Neon
 font-style = Regular
 font-style-italic = false
 # No bold face anywhere: tools that still ask for bold (lazygit borders,
@@ -24,14 +26,18 @@ font-style-bold = false
 font-style-bold-italic = false
 font-size = 20
 # macOS font smoothing is off (see run_onchange_macos-defaults.sh), which
-# leaves JetBrains Mono thin on Retina; a light thicken brings the weight back
+# leaves fonts thin on Retina; a light thicken brings the weight back
 font-thicken = true
 font-thicken-strength = 40
 font-synthetic-style = no-bold
-font-feature = zero
+# Slashed zero (Monaspace's default is dotted)
+font-feature = cv01=2
+# Ligatures, which JetBrains Mono had on by default: = ! < > - | : . # and tags.
+# calt (texture healing) is on by default.
+font-feature = liga,ss01,ss02,ss03,ss04,ss05,ss06,ss07,ss08,ss09,ss10
 # Keep ligatures intact under the cursor
 font-shaping-break = no-cursor
-# JetBrains Mono's own line gap is already taller than most monospace fonts
+# A little air between lines
 adjust-cell-height = 10%
 adjust-box-thickness = 1
 adjust-underline-thickness = 1
