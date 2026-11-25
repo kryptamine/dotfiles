@@ -24,7 +24,7 @@ font-style-italic = false
 # fish pager, gh, brew) get regular, like everything themed in the palette
 font-style-bold = false
 font-style-bold-italic = false
-font-size = 22
+font-size = 20
 # macOS font smoothing is off (see run_onchange_macos-defaults.sh), which
 # leaves fonts thin on Retina; a light thicken brings the weight back
 font-thicken = true
